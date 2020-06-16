@@ -22,7 +22,7 @@ public static int[] twoSum(int[] nums, int target){
 
 
     public static void main(String[] args) {
-        System.out.println("Hello world");
+
         int[] some= {1, 2, 3, 4};
         int target= 6;
 //        System.out.println(Arrays.toString((twoSum(some, target))));
