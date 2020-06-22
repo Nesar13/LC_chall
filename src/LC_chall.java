@@ -1,24 +1,37 @@
 import javax.swing.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 
 
 public class LC_chall {
 
-public static int[] twoSum(int[] nums, int target){
-    Map<Integer, Integer> map=new HashMap<>();
-    for (int i = 0; i < nums.length; i++) {
-        int complement=target-nums[i];
-        if (map.containsKey(complement)){
-            return new int[] {map.get(complement), i };
+
+    public int getImportance(List<Employee> employees, int id) {
+
+        Queue <Employee> queue =new LinkedList<>();
+
+        for (int i = 0; i <employees.size(); i++) {
+            queue.offer(employees.get(i));
         }
-        map.put(nums[i], i);
+        while (!queue.isEmpty()){
+
+        }
+
+        return id;
     }
-    throw new IllegalArgumentException("No two sum solution");
-}
+
+        Map<Integer, Employee> emap;
+        public int getImportance2(List<Employee> employees, int queryid) {
+            emap = new HashMap();
+            for (Employee e: employees) emap.put(e.id, e);
+            return dfs(queryid);
+        }
+        public int dfs(int eid) {
+            Employee employee = emap.get(eid);
+            int ans = employee.importance;
+            for (Integer subid: employee.subordinates)
+                ans += dfs(subid);
+            return ans;
+        }
 
 
     public static void main(String[] args) {
@@ -37,22 +50,20 @@ public static int[] twoSum(int[] nums, int target){
 //        System.out.println(l1);
 ////        System.out.println(l2);
 //        System.out.println(removeNthFromEnd(l1, 1));
-   Node root=new Node(3);
-   root.children.add(new  Node (4));
+  /* Node root=new Node(3);*/
+   
+ /*  root.children.add(new Node (4));
    root.children.add(new Node(5));
    root.children.add(new Node(6));
    root.children.get(0).children.add(new Node (2));
-   root.children.get(0).children.add(new Node (8));
+   root.children.get(0).children.add(new Node (8));*/
 
-
-        System.out.println(root);
+/*
+        System.out.println(maxDepth(root));*/
 
 
 //   n.children= new List<Node> ;
 
-
-
-        System.out.println(root);
 
 
 
@@ -105,3 +116,9 @@ class Node {
 
 
 }
+
+
+// Definition for Employee.
+
+
+
