@@ -18,6 +18,8 @@ public class LC_chall {
 
         return id;
     }
+    int sol=0;
+
 
 
 
