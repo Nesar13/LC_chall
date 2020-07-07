@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Lc690 {
 
-    static Map<Integer, Employee> emap;
+   /* static Map<Integer, Employee> emap;
     public static int getImportance2(List<Employee> employees, int queryid) {
         emap = new HashMap();
         for (Employee e: employees) emap.put(e.id, e);
@@ -14,7 +14,7 @@ public class Lc690 {
         for (Integer subid: employee.subordinates)
             ans += dfs(subid);
         return ans;
-    }
+    }*/
 
     public static void main(String[] args) {
 
@@ -60,7 +60,50 @@ public class Lc690 {
         }
     return ans;
     }
+    public int getImportance3(List<Employee> employees, int id) {
+
+        int sum=0;
+        LinkedList<Employee> queue=new LinkedList<>();
+        ArrayList<Integer> employeeVisited=new ArrayList<>();
+
+
+        //------------Mapping the Employees information to their ID----------------------
+        HashMap<Integer,Employee> EmpMap=new HashMap<>();
+        for(Employee e: employees){
+            EmpMap.put(e.id,e);
+        }
+
+        //--------------------------------Pushing the employee with the given id---------------------
+        queue.addLast(EmpMap.get(id));
+        //-------------------------------Marking the employee Visited--------------------------------
+        employeeVisited.add(id);
+
+
+
+        while(queue.size()!=0){
+            int size=queue.size();
+            //------------------------------------For Every level----------------------------------
+            while(size-->0){
+                Employee e=queue.removeFirst();
+
+                //---------------Summing up the importance for the the employees--------------------
+                sum+=e.importance;
+                for(Integer i:e.subordinates){
+                    Employee ie=EmpMap.get(i);
+
+                    //--------Add subordiates only ifthey are not already visited-------------------
+                    if(employeeVisited.contains(i)==false){
+                        queue.addLast(ie);
+                        employeeVisited.add(i);
+                    }
+                }
+
+            }
+        }
+        return sum;
     }
+
+}
 
 class Employee {
     public int id;
