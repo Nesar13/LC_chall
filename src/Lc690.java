@@ -16,6 +16,30 @@ public class Lc690 {
         return ans;
     }*/
 
+    static int getImportanceBFS(List<Employee> employees, int queryid) {
+        int sum=0;
+        Map <Integer, Employee> emap= new HashMap<>();
+        Queue <Employee> queue=new LinkedList<>();
+        ArrayList<Employee> visitedEmployee= new ArrayList<>();
+
+        for (Employee e : employees){
+            emap.put(e.id, e);
+        }
+        queue.offer(emap.get(queryid));
+        visitedEmployee.add(emap.get(queryid));
+
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            while (size-->0){
+
+                sum += queue.poll().importance;
+
+                /*for (Integer subid: )*/
+
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
         Employee employee1= new Employee();
@@ -40,6 +64,9 @@ public class Lc690 {
         employees.add(employee2);
         employees.add(employee3);
         System.out.println(getImportance(employees,1));
+
+
+
     }
 
     static Map<Integer, Employee>employeeMap;
@@ -73,7 +100,7 @@ public class Lc690 {
             EmpMap.put(e.id,e);
         }
 
-        //--------------------------------Pushing the employee with the given id---------------------
+        //-------------------------------Pushing the employee with the given id to end of queue-----
         queue.addLast(EmpMap.get(id));
         //-------------------------------Marking the employee Visited--------------------------------
         employeeVisited.add(id);
@@ -84,16 +111,17 @@ public class Lc690 {
             int size=queue.size();
             //------------------------------------For Every level----------------------------------
             while(size-->0){
+                //Removing the first item in queue
                 Employee e=queue.removeFirst();
 
                 //---------------Summing up the importance for the the employees--------------------
                 sum+=e.importance;
                 for(Integer i:e.subordinates){
-                    Employee ie=EmpMap.get(i);
+                    Employee subid=EmpMap.get(i);
 
-                    //--------Add subordiates only ifthey are not already visited-------------------
+                    //--------Add subordiates only if they are not already visited-------------------
                     if(employeeVisited.contains(i)==false){
-                        queue.addLast(ie);
+                        queue.addLast(subid);
                         employeeVisited.add(i);
                     }
                 }
