@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.List;
 
 public class Lc690 {
 
@@ -17,28 +18,48 @@ public class Lc690 {
     }*/
 
     static int getImportanceBFS(List<Employee> employees, int queryid) {
-        int sum=0;
-        Map <Integer, Employee> emap= new HashMap<>();
-        Queue <Employee> queue=new LinkedList<>();
-        ArrayList<Employee> visitedEmployee= new ArrayList<>();
+        int sum = 0;
+        Map<Integer, Employee> emap = new HashMap<>();
+        Queue<Employee> queue = new LinkedList<>();
+        ArrayList<Integer> visitedEmployee = new ArrayList<>();
 
-        for (Employee e : employees){
+        //------------Mapping the Employees information to their ID----------------------
+        for (Employee e : employees) {
             emap.put(e.id, e);
         }
+
+        //--------------------------------Pushing the employee with the given id---------------------
+
         queue.offer(emap.get(queryid));
-        visitedEmployee.add(emap.get(queryid));
 
-        while(!queue.isEmpty()){
-            int size=queue.size();
-            while (size-->0){
+        visitedEmployee.add(queryid);
 
-                sum += queue.poll().importance;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            //------------------------------------For Every level----------------------------------
 
-                /*for (Integer subid: )*/
+            while (size-- > 0) {
+                Employee e = queue.poll();
+                //---------------Summing up the importance for the employees--------------------
+
+                sum += e.importance;
+                for (Integer subid : e.subordinates) {
+                    Employee esub = emap.get(subid);
+                    //--------Add subordiates only ifthey are not already visited-------------------
+
+                    if (!visitedEmployee.contains(esub)) {
+                        queue.offer(esub);
+                        visitedEmployee.add(esub.id);
+                    }
+                }
+
+
 
             }
-        }
+        } return sum;
     }
+
+
 
     public static void main(String[] args) {
 
@@ -52,7 +73,7 @@ public class Lc690 {
 
         Employee employee2= new Employee();
         employee2.id=2;
-        employee2.importance=3;
+        employee2.importance=4;
         employee2.subordinates= new ArrayList<>();
 
         Employee employee3= new Employee();
@@ -63,7 +84,7 @@ public class Lc690 {
         employees.add(employee1);
         employees.add(employee2);
         employees.add(employee3);
-        System.out.println(getImportance(employees,1));
+        System.out.println(getImportanceBFS(employees,1));
 
 
 
