@@ -61,7 +61,7 @@ public class Lc690 {
 
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         Employee employee1= new Employee();
         employee1.id=1;
@@ -88,7 +88,7 @@ public class Lc690 {
 
 
 
-    }
+    }*/
 
     static Map<Integer, Employee>employeeMap;
     public static int getImportance(List<Employee> employees, int queryid){

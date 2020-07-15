@@ -1,10 +1,6 @@
 import com.sun.source.tree.Tree;
 
-import java.util.LinkedList;
-import java.util.Stack;
-import java.util.Queue;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Lc107_BST_TreeTraversal {
     static class TreeNode {
@@ -13,10 +9,22 @@ public class Lc107_BST_TreeTraversal {
         TreeNode right;
         TreeNode() {}
         TreeNode(int val) { this.val = val; }
+
+        @Override
+        public String toString() {
+            return "TreeNode{" +
+                    "val=" + val +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
+        }
+
         TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
             this.left = left;
             this.right = right;
+
+
         }
 
     public static List<List<Integer>> levelOrderBottom(TreeNode root) {
@@ -63,7 +71,10 @@ public class Lc107_BST_TreeTraversal {
         root.right.right=new TreeNode(7);
 
 
-        System.out.println(levelOrderBottom(root));
+        int [] arr= {4,1,2,1,2};
+        System.out.println(levelOrderBottom2(root));
+        System.out.println('c'-'a');
+        System.out.println(singleNumber(arr));
 
  /*  root.children.add(new Node (4));
    root.children.add(new Node(5));
@@ -96,6 +107,19 @@ public class Lc107_BST_TreeTraversal {
         }
         return res;
     }
+
+        public static int singleNumber(int[] nums) {
+           HashMap<Integer,Integer> map = new HashMap();
+            for (int i = 0; i <nums.length ; i++) {
+                map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+            }
+            for (int i = 0; i <nums.length ; i++) {
+                if (map.get(nums[i])==1)
+                return nums[i];
+            }
+        return 0;
+
+        }
 
 }
 
