@@ -120,8 +120,17 @@ public class Lc107_BST_TreeTraversal {
         return 0;
 
         }
+        //Bit Manipulation
+        public int singleNumberBit(int[] nums) {
+            int a = 0;
+            for (int i : nums) {
+                a ^= i;
+            }
+            return a;
+        }
 
-}
+
+    }
 
 
 
