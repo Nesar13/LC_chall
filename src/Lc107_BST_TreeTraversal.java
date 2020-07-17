@@ -10,14 +10,6 @@ public class Lc107_BST_TreeTraversal {
         TreeNode() {}
         TreeNode(int val) { this.val = val; }
 
-        @Override
-        public String toString() {
-            return "TreeNode{" +
-                    "val=" + val +
-                    ", left=" + left +
-                    ", right=" + right +
-                    '}';
-        }
 
         TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
@@ -25,6 +17,15 @@ public class Lc107_BST_TreeTraversal {
             this.right = right;
 
 
+        }
+
+        @Override
+        public String toString() {
+            return "TreeNode{" +
+                    "val=" + val +
+                    ", left=" + left +
+                    ", right=" + right +
+                    '}';
         }
 
     public static List<List<Integer>> levelOrderBottom(TreeNode root) {
@@ -64,7 +65,7 @@ public class Lc107_BST_TreeTraversal {
 
 
     public static void main(String[] args) {
-        TreeNode root=new TreeNode(3);
+      /*  TreeNode root=new TreeNode(3);
         root.left=new TreeNode(9);
         root.right=new TreeNode (20);
         root.right.left=new TreeNode(15);
@@ -74,7 +75,7 @@ public class Lc107_BST_TreeTraversal {
         int [] arr= {4,1,2,1,2};
         System.out.println(levelOrderBottom2(root));
         System.out.println('c'-'a');
-        System.out.println(singleNumber(arr));
+        System.out.println(singleNumber(arr));*/
 
  /*  root.children.add(new Node (4));
    root.children.add(new Node(5));
@@ -108,6 +109,11 @@ public class Lc107_BST_TreeTraversal {
         return res;
     }
 
+        /**
+         *
+         * @param nums
+         * @return
+         */
         public static int singleNumber(int[] nums) {
            HashMap<Integer,Integer> map = new HashMap();
             for (int i = 0; i <nums.length ; i++) {
