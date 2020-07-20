@@ -50,6 +50,7 @@ public class Lc105_ConstuctBTfromTraversals {
             return null;
         }
 
+        //val is the first index in preorder which means it is the root
         int val = preorder[preStart];
         TreeNode p = new TreeNode(val);
 
