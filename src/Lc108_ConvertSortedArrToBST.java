@@ -40,8 +40,9 @@ public class Lc108_ConvertSortedArrToBST {
 
         int mid = (start + end)/2;
         TreeNode node = new TreeNode(arr[mid]);
-
+        //note that start is 0 here
         node.left = buildTree(arr,start,mid-1);
+        //note that start = mid+1
         node.right=buildTree(arr,mid+1,end);
 
         return node;

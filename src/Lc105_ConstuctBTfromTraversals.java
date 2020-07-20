@@ -28,22 +28,77 @@ public class Lc105_ConstuctBTfromTraversals {
                     '}';
         }
     }
+
+    /**
+     * You can get the root from the first index in
+     * preorder, and the left and right subtree in the inorder
+     * @param preorder
+     * @param inorder
+     * @return
+     */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return helper(preorder, 0, inorder, 0, inorder.length - 1);
+        int preStart = 0;
+        int preEnd = preorder.length-1;
+        int inStart = 0;
+        int inEnd = inorder.length-1;
+
+        return construct(preorder, preStart, preEnd, inorder, inStart, inEnd);
     }
-    // Everytime we just need to know the root index in preorder array
-    private TreeNode helper(int[] preorder, int index, int[] inorder, int lo, int hi) {
-        if (lo > hi) return null;
-        TreeNode root = new TreeNode(preorder[index]);
-        // i is the count of nodes in left sub tree
-        int i = 0;
-        while (inorder[lo + i] != preorder[index]) ++i;
-        root.left = helper(preorder, index + 1, inorder, lo, lo + i - 1);
-        root.right = helper(preorder, index + 1 + i, inorder, lo + i + 1, hi);
-        return root;
+
+    public TreeNode construct(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd){
+        if(preStart>preEnd||inStart>inEnd){
+            return null;
+        }
+
+        int val = preorder[preStart];
+        TreeNode p = new TreeNode(val);
+
+        //find parent element index from inorder
+        int k=0;
+        for(int i=0; i<inorder.length; i++){
+            if(val == inorder[i]){
+                k=i;
+                break;
+            }
+        }
+
+        p.left = construct(preorder, preStart+1, preStart+(k-inStart), inorder, inStart, k-1);
+        p.right= construct(preorder, preStart+(k-inStart)+1, preEnd, inorder, k+1 , inEnd);
+
+        return p;
     }
         public static void main(String[] args) {
 
+        int[] preorder={3,9,20,15, 7};
+        int[] inorder={9,3,15,20,7};
+
+
         }
 
-}
+        static void bt(int[] preorder, TreeNode root){
+            int size=preorder.length;
+
+            dfs(root, preorder);
+
+
+
+        }
+
+        static TreeNode dfs(TreeNode root,int[] preorder){
+            if(root==null) return root;
+
+            for (int i = 0; i <preorder.length; i++) {
+                TreeNode node=new TreeNode(preorder[i]);
+                dfs(root.left, preorder);
+                dfs(root.right, preorder);
+                return root;
+            }
+
+
+
+
+        return null;
+        }
+
+        }
+
