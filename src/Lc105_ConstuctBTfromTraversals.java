@@ -1,8 +1,8 @@
 public class Lc105_ConstuctBTfromTraversals {
     static class TreeNode {
         int val;
-        Lc107_BST_TreeTraversal.TreeNode left;
-        Lc107_BST_TreeTraversal.TreeNode right;
+        TreeNode left;
+        TreeNode right;
 
         TreeNode() {
         }
@@ -12,7 +12,7 @@ public class Lc105_ConstuctBTfromTraversals {
         }
 
 
-        TreeNode(int val, Lc107_BST_TreeTraversal.TreeNode left, Lc107_BST_TreeTraversal.TreeNode right) {
+        TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
             this.left = left;
             this.right = right;
@@ -27,8 +27,23 @@ public class Lc105_ConstuctBTfromTraversals {
                     ", right=" + right +
                     '}';
         }
+    }
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return helper(preorder, 0, inorder, 0, inorder.length - 1);
+    }
+    // Everytime we just need to know the root index in preorder array
+    private TreeNode helper(int[] preorder, int index, int[] inorder, int lo, int hi) {
+        if (lo > hi) return null;
+        TreeNode root = new TreeNode(preorder[index]);
+        // i is the count of nodes in left sub tree
+        int i = 0;
+        while (inorder[lo + i] != preorder[index]) ++i;
+        root.left = helper(preorder, index + 1, inorder, lo, lo + i - 1);
+        root.right = helper(preorder, index + 1 + i, inorder, lo + i + 1, hi);
+        return root;
+    }
         public static void main(String[] args) {
 
         }
-    }
+
 }
