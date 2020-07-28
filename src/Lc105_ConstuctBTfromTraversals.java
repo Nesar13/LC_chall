@@ -68,6 +68,7 @@ public class Lc105_ConstuctBTfromTraversals {
 
         return p;
     }
+    //caching the inorder indexes in a hashmap
     HashMap<Integer, Integer> inorderMap=new HashMap<>();
     int preIndex=0;
 
@@ -80,15 +81,17 @@ public class Lc105_ConstuctBTfromTraversals {
 
     private TreeNode helper(int[] preorder, int[] inorder, int start, int end) {
 
-        if(start > end)  return null;
+        if(start > end)
+            return null;
 
         TreeNode root= new TreeNode(preorder[preIndex++]);
 
-        if (root == null) return null;
+        if (root == null)
+            return null;
 
-        if (start == end){
+        if (start == end) //this happens on the leaves of the tree
             return root;
-        }
+
 
         int index=inorderMap.get(root.val);
 
