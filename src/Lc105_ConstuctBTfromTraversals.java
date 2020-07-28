@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Lc105_ConstuctBTfromTraversals {
     static class TreeNode {
         int val;
@@ -15,10 +17,8 @@ public class Lc105_ConstuctBTfromTraversals {
         TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
             this.left = left;
-            this.right = right;
+            this.right = right;}
 
-
-        }
         @Override
         public String toString() {
             return "TreeNode{" +
@@ -26,8 +26,8 @@ public class Lc105_ConstuctBTfromTraversals {
                     ", left=" + left +
                     ", right=" + right +
                     '}';
-        }
-    }
+        }}
+
 
     /**
      * You can get the root from the first index in
@@ -68,7 +68,35 @@ public class Lc105_ConstuctBTfromTraversals {
 
         return p;
     }
-        public static void main(String[] args) {
+    HashMap<Integer, Integer> inorderMap=new HashMap<>();
+    int preIndex=0;
+
+    public TreeNode buildTree2(int[] preorder, int[] inorder){
+        for (int i = 0; i < inorder.length; i++) {
+            inorderMap.put(inorder[i], i); ,
+        }
+        return helper(preorder, inorder, 0, inorder.length-1);
+    }
+
+    private TreeNode helper(int[] preorder, int[] inorder, int start, int end) {
+
+        if(start > end)  return null;
+
+        TreeNode root= new TreeNode(preorder[preIndex++);
+
+        if (root == null) return null;
+
+        if (start == end){
+            return root;
+        }
+
+        int index=inorderMap.get(root.val);
+
+        root.left=helper(preorder, inorder, start, index-1);
+        root.right=helper(preorder, inorder, index+1, end);
+    }
+
+    public static void main(String[] args) {
 
         int[] preorder={3,9,20,15, 7};
         int[] inorder={9,3,15,20,7};
