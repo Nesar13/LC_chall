@@ -73,7 +73,7 @@ public class Lc105_ConstuctBTfromTraversals {
 
     public TreeNode buildTree2(int[] preorder, int[] inorder){
         for (int i = 0; i < inorder.length; i++) {
-            inorderMap.put(inorder[i], i); ,
+            inorderMap.put(inorder[i], i);
         }
         return helper(preorder, inorder, 0, inorder.length-1);
     }
@@ -82,7 +82,7 @@ public class Lc105_ConstuctBTfromTraversals {
 
         if(start > end)  return null;
 
-        TreeNode root= new TreeNode(preorder[preIndex++);
+        TreeNode root= new TreeNode(preorder[preIndex++]);
 
         if (root == null) return null;
 
@@ -94,6 +94,7 @@ public class Lc105_ConstuctBTfromTraversals {
 
         root.left=helper(preorder, inorder, start, index-1);
         root.right=helper(preorder, inorder, index+1, end);
+        return root;
     }
 
     public static void main(String[] args) {
