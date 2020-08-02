@@ -56,7 +56,7 @@ public class Lc108_ConvertSortedArrToBST {
     public static void main(String[] args) {
         int[] arr={-10,-3,0,5,9};
 
-        System.out.println(sortedArrayToBST(arr));
+        /*System.out.println(sortedArrayToBST(arr));*/
     }
 
 
