@@ -78,7 +78,7 @@ public class Lc105_ConstuctBTfromTraversals {
         }
         return helper(preorder, inorder, 0, inorder.length-1);
     }
-
+//TODO: I changed
     private TreeNode helper(int[] preorder, int[] inorder, int start, int end) {
 
         if(start > end)
@@ -99,7 +99,13 @@ public class Lc105_ConstuctBTfromTraversals {
         root.right=helper(preorder, inorder, index+1, end);
         return root;
     }
+    public int minDepth(TreeNode root) {
 
+
+
+
+return 0;
+    }
     public static void main(String[] args) {
 
         int[] preorder={3,9,20,15, 7};
