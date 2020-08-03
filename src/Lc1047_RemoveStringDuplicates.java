@@ -52,7 +52,7 @@ public class Lc1047_RemoveStringDuplicates {
         public static void main(String[] args) {
             String s="abbaca";
 
-            System.out.println(removeDuplicates2(s));
+            /*System.out.println(removeDuplicates2(s));*/
         }
     }
 

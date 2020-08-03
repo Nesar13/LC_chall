@@ -69,7 +69,7 @@ public class Lc106_ConstructBTfromPostandInorder {
         int[] postorder={9,15,7,20,3};
         int[] inorder={9,3,15,20,7};
 
-        System.out.println(buildTree(inorder, postorder));
+        /*System.out.println(buildTree(inorder, postorder));*/
 
     }
 
