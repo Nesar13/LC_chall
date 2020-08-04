@@ -86,6 +86,8 @@ ListNode curr=new ListNode(0);
         return p;
     }
 
+
+
     public static void main(String[] args) {
 int count=0;
 HashMap<Integer, Integer> map=new HashMap<>();
@@ -100,8 +102,10 @@ HashMap<Integer, Integer> map=new HashMap<>();
         }*/
 
 
+
        /* System.out.println(head);*/
-        System.out.println(reverseList2(head));
+       /* System.out.println(reverseList2(head));*/
 
     }
 }
+;
