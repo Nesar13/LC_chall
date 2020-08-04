@@ -67,6 +67,7 @@ ListNode curr=new ListNode(0);
         //prev keeps track of previous nodes, and will be returned at end
         //it will be initialized to null to set the of the head to null
         ListNode prev = null;
+        //setting a dummy variable to point to the given ListNode
         ListNode curr = head;
         while (curr != null) {
             //this will keep track of the next node
@@ -76,6 +77,13 @@ ListNode curr=new ListNode(0);
             curr = nextTemp;
         }
         return prev;
+    }
+    public ListNode reverseList3(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode p = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return p;
     }
 
     public static void main(String[] args) {
