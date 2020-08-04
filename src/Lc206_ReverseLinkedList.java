@@ -19,6 +19,13 @@ public class Lc206_ReverseLinkedList {
                     '}';
         }
     }
+
+    /**
+     * Reversing a LinkedList using HashMap to store values, very slow
+     * Runtime: 1 ms, faster than 9.43%
+     * @param head
+     * @return
+     */
     public static ListNode reverseList(ListNode head) {
     ListNode dummy=null;
     HashMap<Integer, Integer> map=new HashMap<>();
@@ -50,11 +57,19 @@ ListNode curr=new ListNode(0);
     return dummy.next;
     }
 
-
+    /**
+     * Changing references of the given ListNode to previous Nodes
+     * Runtime: 0 ms, faster than 100.00%
+     * @param head
+     * @return
+     */
     public static ListNode reverseList2(ListNode head) {
+        //prev keeps track of previous nodes, and will be returned at end
+        //it will be initialized to null to set the of the head to null
         ListNode prev = null;
         ListNode curr = head;
         while (curr != null) {
+            //this will keep track of the next node
             ListNode nextTemp = curr.next;
             curr.next = prev;
             prev = curr;
