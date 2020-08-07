@@ -5,7 +5,10 @@ public class Lc122_BestTimetoBuyandSellStocks {
 
     public static int maxProfit(int[] prices) {
         int maxprofit = 0;
+
         for (int i = 1; i < prices.length; i++) {
+            //check to see if current index price is greater than previous
+            //if so add to maxprofit
             if (prices[i] > prices[i - 1])
                 maxprofit += prices[i] - prices[i - 1];
         }
