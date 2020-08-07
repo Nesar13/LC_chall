@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Lc242_Valid_Anagram {
 
     //fastest solution
@@ -42,10 +44,15 @@ public class Lc242_Valid_Anagram {
 
 
     public static void main(String[] args) {
+
         String s = "anagram";
         String t = "nagaam";
 
 
+        System.out.println(Arrays.toString(t.toCharArray()));
+        char[] chars=t.toCharArray();
+        Arrays.sort(chars);
+        System.out.println(Arrays.toString(chars));
         System.out.println('b'-'a');
         System.out.println(isAnagram(s,t));
 
