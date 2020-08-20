@@ -15,6 +15,7 @@ public class Lc171_ExcelSheetColumnNumber {
     public static int titleToNumber2(String s) {
         int result=0;
         int lengthCount  = s.length() -1;
+
         for (int i = 0; i < s.length(); i++){
 
             result+=Math.pow(26, lengthCount--) * ((s.charAt(i) - 'A') + 1);
