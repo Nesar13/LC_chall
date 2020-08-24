@@ -35,8 +35,12 @@ public class Lc268_MissingNumberinArray {
 
     // Gauss' formula (n(n+1))/2, gives you sum of from 0 to n
     // subtract sum from actual calculated sum to find missing number;
+    // it's faster if you set nums.length to a variable than to use it in
+    // Gauss' formula
+    // fastest solution
     public int missingNumber3(int[] nums) {
-        int expectedSum = nums.length*(nums.length + 1)/2;
+        int len=nums.length;
+        int expectedSum = len*(len + 1)/2;
         int actualSum = 0;
         for (int num : nums) actualSum += num;
         return expectedSum - actualSum;
