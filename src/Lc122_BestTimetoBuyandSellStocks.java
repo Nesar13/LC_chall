@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Lc122_BestTimetoBuyandSellStocks {
 
 
-    public static int maxProfit(int[] prices) {
+    public static int maxProfit2(int[] prices) {
         int maxprofit = 0;
 
         for (int i = 1; i < prices.length; i++) {
@@ -18,6 +18,6 @@ public class Lc122_BestTimetoBuyandSellStocks {
 
         int[] arr={1, 7, 2, 3, 6, 7, 6, 7};
 
-        System.out.println(maxProfit(arr));
+        System.out.println(maxProfit2(arr));
     }
 }

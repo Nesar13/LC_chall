@@ -3,7 +3,8 @@ import java.util.*;
 public class Lc350_IntersectionOfArray {
 
 
-    //fastes solution
+    // fastest solution
+    // HashMap and using List
     public static int[] intersect(int[] nums1, int[] nums2) {
         List<Integer> list= new ArrayList<>();
         Map<Integer,Integer> map= new HashMap<>();
@@ -28,6 +29,7 @@ public class Lc350_IntersectionOfArray {
         return arr;
     }
 
+    // slower solution at 60%
     public int[] intersect2(int[] nums1, int[] nums2) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();
         int k = 0;
