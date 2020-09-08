@@ -7,7 +7,7 @@ public class Lc101_SymmetricTree {
 
     }
 
-    //Iterative solution similar to BFS
+    // Iterative solution similar to BFS
     public boolean isSymmetric2(TreeNode root) {
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
