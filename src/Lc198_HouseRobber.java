@@ -1,3 +1,5 @@
+import static java.lang.Math.rint;
+
 public class Lc198_HouseRobber {
     public static int rob(int[] nums) {
 
@@ -10,7 +12,7 @@ public class Lc198_HouseRobber {
         dp[0]=nums[0];
         //store the max value between the first and second index
         dp[1]=Math.max(nums[1],nums[0]);
-        int currMax=Integer.MIN_VALUE;
+
 
         for (int i = 2; i < nums.length ; i++) {
 
@@ -26,10 +28,10 @@ public class Lc198_HouseRobber {
 
     
     public static void main(String[] args) {
-        int[] nums = {2,7,9,3,1};
-        int[] nums2 = {4,2,3,4};
+
         int[] nums3 = {2,1,1,2};
 
         System.out.println(rob(nums3));
+        System.out.println(rint(4.5));
     }
 }
