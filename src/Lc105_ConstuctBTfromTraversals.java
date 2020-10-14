@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.HashMap;
 
 public class Lc105_ConstuctBTfromTraversals {
@@ -134,6 +136,7 @@ return 0;
         int[] preorder={3,9,20,15, 7};
         int[] inorder={9,3,15,20,7};
 
+        System.out.println('C'-'A');
         /*System.out.println(buildTree(preorder, inorder));*/
 
         }
