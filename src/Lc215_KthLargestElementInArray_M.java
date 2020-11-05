@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Lc215_KthLargestElementInArray_M {
 
-    // QuickSelect Solution
+    // QuickSelect Solution 100%
     public static int findKthLargest(int[] nums, int k) {
         int len = nums.length;
         return quickselect(nums, 0, len - 1, len + 1 - k);
