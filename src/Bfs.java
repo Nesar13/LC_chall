@@ -28,6 +28,9 @@ class Bfs {
                 "(starting from vertex 2)");
 
         g.BFS(2);
+
+        PriorityQueue<Integer> pq=new PriorityQueue<>((o1, o2) ->Integer.compare(o2, o1) );
+
     }
 // This code is contributed by Aakash Hasija
 }
