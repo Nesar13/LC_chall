@@ -1,29 +1,32 @@
+import java.util.TreeMap;
+
 public class Lc1438_LongestContinuousSubArray_M {
     //TODO:
+
+    // we add the values in the array with treemap as it will be sorted from least to greatest
+    // and we will check if the diff of lastentry and firstentry is greater than limit
+    // if so, update map and subtract the frequency, and if 0, remove the key-value
+    // and move window to the right
     public static int longestSubarray(int[] nums, int limit) {
-        int res = Integer.MIN_VALUE;
-        int maxInWindow=0;
 
-        for (int right = 0, left = 0; right < nums.length; right++) {
-           int difference= Math.abs(nums[left] - nums[right]);
+        TreeMap<Integer, Integer> map = new TreeMap<>();
 
-            maxInWindow=Math.max(maxInWindow, nums[right]);
-            int maxDifference = Math.abs(nums[left] - maxInWindow);
+        int right, left;
 
+        for (right = 0, left = 0; right < nums.length; right++) {
 
-            if (difference <= limit && maxDifference <=limit) {
+            map.put(nums[right], 1 + map.getOrDefault(nums[right], 0));
 
-                res = Math.max(res, right - left+1);
-            }
-            if (difference > limit || maxDifference > limit) {
+            if (map.lastEntry().getKey() - map.firstEntry().getKey() > limit) {
+
+                map.put(nums[left], map.get(nums[left])-1);
+                if (map.get(nums[left])==0) map.remove(nums[left]);
                 left++;
 
             }
 
-
         }
-
-        return res;
+        return right - left  ;
     }
 
     public static void main(String[] args) {
