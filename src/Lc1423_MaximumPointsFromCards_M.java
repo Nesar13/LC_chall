@@ -24,7 +24,6 @@ public class Lc1423_MaximumPointsFromCards_M {
         return ans;
     }
 
-
     public static void main(String[] args) {
 
         int[] arr = {1, 2, 3, 4, 5, 6, 1}; // answer should be
