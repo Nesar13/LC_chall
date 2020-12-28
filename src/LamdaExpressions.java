@@ -30,6 +30,21 @@ public class LamdaExpressions {
         TreeMap<Integer, String> map = new TreeMap<Integer, String>();
         insertAndPrint(map);
 
+        // max heap
+        PriorityQueue<Integer> pq2 = new PriorityQueue<>(Collections.reverseOrder());
+
+        pq2.add(3);
+        pq2.add(7);
+        pq2.add(4);
+
+        System.out.println(pq2);
+        System.out.println(pq2.poll());
+        System.out.println(pq2.poll());
+
+
+
+
+
 
 
 
