@@ -9,6 +9,7 @@ public class Lc692_TopKFrequentWords_M {
     // we add the min heap into a linkedlist as insertion is O(1) so we
     // effectively reversed this
     //88%
+    // O(nlogn)
 
     public static List<String> topKFrequent(String[] words, int k) {
 
@@ -39,6 +40,14 @@ public class Lc692_TopKFrequentWords_M {
 
     public static void main(String[] args) {
         String [] s= {"i", "love", "leetcode", "i", "love"};
+
+        String s1= "hello";
+        String s2="cool";
+
+
+        // compareTo returns positive if the first string is higher lexiographically ("b".compareTo("c") would return negative
+        System.out.println(s2.compareTo(s1));
+        System.out.println("b".compareTo("c"));
 
         System.out.println(topKFrequent(s, 5));
     }
