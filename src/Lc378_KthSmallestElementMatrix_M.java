@@ -32,11 +32,29 @@ public class Lc378_KthSmallestElementMatrix_M {
         return pq.poll();
 
     }
+//
+    public static int kthSmallest2(int[][] matrix, int k) {
+        // lo is the first value in the array, hi is the last value plus one
+        int lo = matrix[0][0], hi = matrix[matrix.length - 1][matrix[0].length - 1] + 1;//[lo, hi)
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            int count = 0,  j = matrix[0].length - 1;
+            for(int i = 0; i < matrix.length; i++) {
+                while(j >= 0 && matrix[i][j] > mid)
+                    j--;
+                count += (j + 1);
+            }
+            if(count < k)
+                lo = mid + 1;
+            else hi = mid;
+        }
+        return lo;
+    }
     public static void main(String[] args) {
-        int [] [] matrix = {{1, 5, 9},{10, 11, 13},
+        int [][] matrix = {{1, 5, 9},{10, 11, 13},
                 {12, 13, 15}};
 
-        System.out.println(kthSmallest(matrix,8));
+        System.out.println(kthSmallest2(matrix,8));
 
     }
 }
