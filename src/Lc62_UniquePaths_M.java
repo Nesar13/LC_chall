@@ -1,5 +1,12 @@
 public class Lc62_UniquePaths_M {
 
+
+
+// do a dp with recursion and memoization, the initial conditions are key
+// store the values of the results in array and return if there's a value in memo[i][j]
+// and since we know that the robot can move only two directions (down, and right) we can easily add it recursively
+// 100%
+
     public static int uniquePaths(int m, int n) {
 
         int [][] memo=new int[m][n];
