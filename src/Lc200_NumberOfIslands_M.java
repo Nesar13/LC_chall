@@ -19,7 +19,7 @@ public class Lc200_NumberOfIslands_M {
         static char[][] g;     // The given grid, stored to reduce recursion memory usage
 
         /**
-         * This converts all the 1s and it's adjacent 1s to 0 and then increment it
+         * This converts all the 1s and it's adjacent 1s to 0 and then count it as an island
          *
          * Given a 2d grid map of '1's (land) and '0's (water),
          * count the number of islands.
