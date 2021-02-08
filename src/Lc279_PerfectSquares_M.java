@@ -1,47 +1,23 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Lc279_PerfectSquares_M {
 
-    static ArrayList<Integer> arr = new ArrayList<>();
-    static int res=Integer.MAX_VALUE;
-    public  static int numSquares(int n) {
-        for (int i = 0; i < n; i++) {
-            isPerfectSquare(0, i);
+    public static int numSquares(int n) {
+        int[] dp = new int[n+1];
 
-        }
-dfs( new ArrayList(),  n, 0);
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0;
 
-return res;
+        for(int i=1; i<=n; i++){
 
-    }
-
-
-    public static void dfs(ArrayList temp, int n, int sum) {
-        if (sum==n ) res=Math.min(temp.size(), res);
-
-        for (int end = 0; end  < arr.size() ; end++) {
-            temp.add(arr.get(end));
-            sum+=arr.get(end);
-
-            dfs(temp,n,  sum);
-            sum -= arr.get(end);
+            for(int j=1; j<=Math.sqrt(i); j++){
+                int c=i-(j*j);
+                dp[i] = Math.min(dp[i], (dp[i-(j*j)]+1));
+            }
         }
 
-
-
-
-    }
-
-    public static void isPerfectSquare(int count, int primeCheck) {
-        if (count == primeCheck/2 + 1 ) return ;
-        if (count * count == primeCheck) {
-            arr.add(count);
-            return;
-        }
-
-
-
-       isPerfectSquare(count+1, primeCheck);
+        return dp[n];
     }
 
 
