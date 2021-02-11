@@ -1,5 +1,6 @@
 public class Lc116_PopulatingNextPrtNode_M {
     class Node {
+
         public int val;
         public Node left;
         public Node right;

@@ -26,6 +26,7 @@ public class Lc279_PerfectSquares_M {
 //        System.out.println(isPerfectSquare(0, 25));
 
         System.out.println(numSquares(13));
+
         //Example 1:
         //Input: n = 12
         //Output: 3
