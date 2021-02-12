@@ -2,7 +2,10 @@ import java.util.*;
 
 public class Lc380_InsertDeleteGetRandom_M {
 
-
+// use a hashmap to store the value, and index and remove in O(1) TC
+    // use an arraylist to pick a random num from list
+    // tricky part is to removing
+    // 100%
     class RandomizedSet {
 
         Map<Integer, Integer> map;
