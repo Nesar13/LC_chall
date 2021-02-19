@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Lc380_InsertDeleteGetRandom_M {
 
-// use a hashmap to store the value, and index and remove in O(1) TC
+// use a hashmap to store the value and index, and remove in O(1) time complexity
     // use an arraylist to pick a random num from list
-    // tricky part is to removing
+    // tricky part is removing
     // 100%
     class RandomizedSet {
 
@@ -37,6 +37,7 @@ public class Lc380_InsertDeleteGetRandom_M {
             }
             // will return the index of the key
             int idx = map.remove(val);
+
             int last = list.remove(list.size() - 1);
             if(val != last) {
 
