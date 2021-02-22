@@ -56,6 +56,6 @@ return root;
         // to its next right node, just like in Figure B. The serialized
         // output is in level order as connected by the next pointers,
         // with '#' signifying the end of each level.
-
+//
     }
 }
