@@ -4,6 +4,10 @@ import java.util.Queue;
 
 public class Lc207_CourseSchedule_M {
 
+
+    // bfs with graph solution, we create a graph structure link with arraylists
+    // we can use an array for the degrees to check the number of indegrees
+    // and add it to queue
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
         ArrayList[] graph = new ArrayList[numCourses];
         int[] degree = new int[numCourses];
@@ -31,6 +35,7 @@ public class Lc207_CourseSchedule_M {
         while (queue.size() != 0) {
             int course = (int) queue.poll();
             for (int i = 0; i < graph[course].size(); i++) {
+                // check each prereq and decrement since we have seen it already
                 int pointer = (int) graph[course].get(i);
                 degree[pointer]--;
                 if (degree[pointer] == 0) {
