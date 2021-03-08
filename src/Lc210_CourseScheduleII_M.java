@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Lc210_CourseScheduleII_M {
 
-    static int count = 0;
+
 
     public static void main(String[] args) {
 
@@ -23,6 +23,7 @@ public class Lc210_CourseScheduleII_M {
     // we recursively check if we visited each course and add to our result once we are done
     // most likely O(E+V) as we explore each vertex and edge
 
+    static int count = 0;
     public static int[] findOrder(int numCourses, int[][] prerequisites) {
 
         ArrayList[] graph = new ArrayList[numCourses];
@@ -60,6 +61,7 @@ public class Lc210_CourseScheduleII_M {
         if (visited[course]) {
             // add course if it is not in our result already
             if (!inArray(course, res)) res[count++] = course;
+            // return the result of dp
             return dp[course];
 
         } else visited[course] = true;
