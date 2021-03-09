@@ -9,8 +9,8 @@ public class Lc139_WordBreak_M {
 
 // Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
 //Output: false
-        String s="catsandog";
-        List <String> wordDict= Arrays.asList("cats", "dog", "sand", "and", "cat");
+        String s = "catsanddog";
+        List<String> wordDict = Arrays.asList("cats", "dog", "sand", "and", "cat");
 
 
         System.out.println(wordBreak2(s, wordDict));
@@ -18,11 +18,41 @@ public class Lc139_WordBreak_M {
 
     }
 
+    // use boolean dp to store if a word exists by marking the
+    // end of the word as true if it's in the dictionary
+    // if the last index is true, then it is possible to create word breaks
+    // in the word
+    public static boolean wordBreak2(String s, List<String> dict) {
+        if (s == null || s.length() == 0) return false;
+
+        int n = s.length();
+
+        // dp[i] represents whether s[0...i] can be formed by dict
+        boolean[] dp = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            // note j <= i which means i is the end
+            // j will iterate until i
+            for (int j = 0; j <= i; j++) {
+                String sub = s.substring(j, i + 1);
+
+
+                // dp[j-1] is to check if theres a 'space' to begin the current word
+                //j==0 is to cover the beginning of the string
+                if (dict.contains(sub) && (j == 0 || dp[j - 1])) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[n - 1];
+    }
+
     public boolean wordBreak(String s, List<String> wordDict) {
 
 
-       return dfs(s, wordDict, 0, 0, "");
-
+        return dfs(s, wordDict, 0, 0, "");
 
 
     }
@@ -38,40 +68,14 @@ public class Lc139_WordBreak_M {
             return true;
         }
 
-        for (int i = start; i <s.length() ; i++) {
+        for (int i = start; i < s.length(); i++) {
 
-            String st=s.substring(i, end);
+            String st = s.substring(i, end);
 
             dfs(s, wordDict, start, end++, st);
 
 
         }
-return false;
-        }
-
-    public static boolean wordBreak2(String s, List<String> dict) {
-        if (s == null || s.length() == 0) return false;
-
-        int n = s.length();
-
-        // dp[i] represents whether s[0...i] can be formed by dict
-        boolean[] dp = new boolean[n];
-
-        for (int i = 0; i < n; i++) {
-            // note j <= i which means i is the end
-            // j will iterate until i
-            for (int j = 0; j <= i; j++) {
-                String sub = s.substring(j, i + 1);
-
-                // we check if we are either at the beginning of the string
-                // or if our dp was true on the previous word
-                if (dict.contains(sub) && (j == 0 || dp[j - 1])) {
-                    dp[i] = true;
-                    break;
-                }
-            }
-        }
-
-        return dp[n - 1];
+        return false;
     }
-    }
+}
