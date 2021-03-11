@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lc139_WordBreak_M {
 
@@ -13,7 +15,7 @@ public class Lc139_WordBreak_M {
         List<String> wordDict = Arrays.asList("cats", "dog", "sand", "and", "cat");
 
 
-        System.out.println(wordBreak2(s, wordDict));
+        System.out.println(wordBreak(s, wordDict));
 
 
     }
@@ -48,33 +50,29 @@ public class Lc139_WordBreak_M {
 
         return dp[n - 1];
     }
-
-    public boolean wordBreak(String s, List<String> wordDict) {
-
-
-        return dfs(s, wordDict, 0, 0, "");
-
-
-    }
-
-    private boolean dfs(String s, List<String> wordDict, int start, int end, String temp) {
-
-
-        if (end == s.length() - 1) {
-            return true;
-
+// this is 99
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> set = new HashSet<>(wordDict);
+        boolean[] isValidStartIndexArr = new boolean[s.length() + 1];
+        int maxLen = 0;
+        for(String word:wordDict){
+            if(word.length() > maxLen){
+                maxLen = word.length();
+            }
         }
-        if (wordDict.contains(temp)) {
-            return true;
-        }
-
-        for (int i = start; i < s.length(); i++) {
-
-            String st = s.substring(i, end);
-
-            dfs(s, wordDict, start, end++, st);
-
-
+        isValidStartIndexArr[0] = true;
+        //i is the start of substring
+        for(int i = 0;i<s.length();i++){
+            if(!isValidStartIndexArr[i]) continue;
+            //Optimization 1: length of substring will be maxLen; 1ms beat 98.73
+            //j is the end of substring
+            for(int j = i;j<Math.min(i+maxLen,s.length());j++){
+                String temp=s.substring(i,j+1);
+                if(set.contains(s.substring(i,j+1))){
+                    isValidStartIndexArr[j+1] = true;
+                    if(isValidStartIndexArr[s.length()]) return true;
+                }
+            }
         }
         return false;
     }
