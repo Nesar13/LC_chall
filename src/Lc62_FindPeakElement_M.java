@@ -1,7 +1,8 @@
 public class Lc62_FindPeakElement_M {
 
     // an array will have many peaks, we just need to find one
-    // binary
+    // binary search
+    // O(nlogn)
     public static int findPeakElement2(int[] nums) {
         int l = 0, r = nums.length - 1;
         while (l < r) {
@@ -37,7 +38,6 @@ public class Lc62_FindPeakElement_M {
         }
 
         return resIndex;
-
 
     }
 }
