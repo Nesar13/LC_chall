@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-//
+
 public class Lc1557_MinNumOfVerticesReachAllNodes_M {
 
     // we want vertexes that have no indegree
