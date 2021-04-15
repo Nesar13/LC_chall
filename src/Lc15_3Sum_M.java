@@ -9,7 +9,7 @@ public class Lc15_3Sum_M {
     // to the right means we will have a greater sum and moving to the left is less
     // i is only incremented forward and we don't consider previous i's anymore
     // the tricky part is to avoid duplicate in solution like  [-4,-1,-1,0,1,2]
-    public List<List<Integer>> threeSum2(int[] num) {
+    public static List<List<Integer>> threeSum2(int[] num) {
 
         int len=num.length;
         List<List<Integer>> res = new LinkedList<>();
@@ -19,14 +19,14 @@ public class Lc15_3Sum_M {
         for (int i = 0; i < num.length-2; i++) {
             // for edge cases such as [00000]
             if (i == 0 || (i > 0 && num[i] != num[i-1])) {
-                int lo = i+1, hi = num.length-1, sum = 0-num[i];
+                int lo = i+1, hi = num.length-1, sum = num[i]+num[lo] + num[hi];
                 while (lo < hi) {
-                    if (num[lo] + num[hi] == sum) {
+                    if (sum == 0) {
                         res.add(Arrays.asList(num[i], num[lo], num[hi]));
                         while (lo < hi && num[lo] == num[lo+1]) lo++;
                         while (lo < hi && num[hi] == num[hi-1]) hi--;
                         lo++; hi--;
-                    } else if (num[lo] + num[hi] < sum) lo++;
+                    } else if (sum<0) lo++;
                     else hi--;
                 }
             }
@@ -88,7 +88,9 @@ public class Lc15_3Sum_M {
     public static void main(String[] args) {
 //[-1,0,1,2,-1,-4]
         int  [] arr={-1,0,1,2,-1,-4};
+        int  [] arr2={0,0,-1,2,-1,0};
 
-        System.out.println(threeSum(arr));
+
+        System.out.println(threeSum2(arr));
     }
 }
