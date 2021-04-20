@@ -1,7 +1,7 @@
 public class Lc518_CoinChange2NumWays_M {
 
 // we get the number of ways to generate an amount by
-    // adding the previous i-coin index
+    // adding the previous i-coin index and storing it using dp
     // TC: O(nd) SC: O(n)
     public static int change(int amount, int[] coins) {
         int [] dp= new int[amount+1];
