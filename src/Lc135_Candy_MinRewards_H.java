@@ -54,7 +54,7 @@ public class Lc135_Candy_MinRewards_H {
             else if (r==ratings[i+1] && r > ratings[i-1] ) res[i]=Math.max(res[i], res[i-1]+1);
 
 
-
+// the question
 
         }
 
