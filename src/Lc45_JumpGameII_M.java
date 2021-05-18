@@ -32,6 +32,8 @@ public class Lc45_JumpGameII_M {
     }
 
 
+
+
     public static void main(String[] args) {
         //Your input
         //[2,3,1,1,4]
@@ -39,10 +41,15 @@ public class Lc45_JumpGameII_M {
         //2
         //Expected
         //2
+//Input
+//[1,1,2,2,0,1,1]
+//Output
+//false
+//Expected
+//true
 
+        int [] arr= {1,1,2,2,0,1,1};
 
-        int [] arr= {2,3,1,1,4};
-
-        System.out.println(jump(arr));
+        //System.out.println(canJump(arr));
     }
 }
