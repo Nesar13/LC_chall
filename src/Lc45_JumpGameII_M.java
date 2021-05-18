@@ -1,26 +1,33 @@
 public class Lc45_JumpGameII_M {
 
+    // we can do this problem using dp but it's O(n^2)
+    // we just take note of the maxindex we can reach before having to jump
+    // which means storing a temp variable so we can update our
+    // maxReach once we reached maxReach
+    // TC: O(n)
     public static  int jump(int[] nums) {
         int len=nums.length;
-        int steps=0;
-        if (len<2) return  steps;
+        int jumps=0;
+        if (len<2) return  0;
         int tempReach=nums[0];
         int maxReach=nums[0];
 
-        for(int i=0; i< nums.length-1; i++){
+        // note that we end before the last index since we want to add to our
+        // jumps if we end prematurely like [2,1]
+        for(int i=1; i< len-1; i++){
 
             if (nums[i] + i > tempReach) tempReach=nums[i] + i;
 
             if(i==maxReach) {
 
-                steps++;
+                jumps++;
 
-                maxReach=Math.max(tempReach, nums[i]+i);
+                maxReach=tempReach;
 
             }
 
         }
-        return steps+1;
+        return jumps+1;
 
     }
 
