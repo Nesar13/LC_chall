@@ -4,7 +4,6 @@ public class Lc1123_LowestCommonAncestorDeepestLeaves_M {
     // compare and store max Depth and node if the left and right nodes have same depth
     // tried boolean but didn't realize they wanted the longest depth, even if it's a leaf with
     // no siblings
-
     // O(n) time | O(1) space
     int deepest = 0;
     TreeNode lca;
