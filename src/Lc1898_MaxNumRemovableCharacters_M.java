@@ -1,50 +1,56 @@
 public class Lc1898_MaxNumRemovableCharacters_M {
 
-    public static int maximumRemovals(String s, String p, int[] removable) {
 
-        StringBuilder sb=new StringBuilder();
-        int res=0;
-        int plen=p.length();
+    public int maximumRemovals(String s, String p, int[] removable) {
 
-        for(char c: s.toCharArray()) sb.append(c);
+        // What do I binary search then? I find the number of elements I can remove!
+        // The left boundary represents the lower limit (0 at first) while the right boundary represents the upper limit (the length of the removable array)
+        // Each time, I find the middle number (which is an attempt to remove that number of letters from the string)
+        // I also use an array of characters and replace those letters removed with the '/' symbol (can choose anything as long as it's a non-letter)
+        // This should be faster and more convenient to work with as compared to removing letters directly from a string (high time complexity from string concatenation)
 
-        for (int i =0; i< removable.length; i++) {
+        //Firstly, I express the letters into an array of characters
+        char[] letters = s.toCharArray();
+        //Set up my boundaries.
+        int l = 0, r = removable.length;
+        while (l <= r) {
+            //'mid' represents how many letters I remove this round.
+            int mid = (l+r)/2;
+            //'Remove' those letters!
+            for (int i=0;i<mid;i++) letters[removable[i]] = '/';
 
-            sb.deleteCharAt(removable[i]);
-            String s1=sb.toString();
+            //I perform a simple check to see if p is still a subsequence of it. If it is, change the lower boundary.
+            if (check(letters,p)) l = mid+1;
 
-            int slen=sb.length();
-            int pe=0;
-            int subs=0;
-
-            // check if still subsequence
-
-            for (int j=0; j < slen; j++) {
-
-
-
-                if(pe < plen && sb.charAt(j)==p.charAt(pe)) {
-
-                    pe++;
-                    subs++;
-                }
-
-                if(subs==plen) {
-                    res++;
-                    break; }
-
-                if(j==slen-1 && subs != plen) return res;
-
-
-
-                System.out.format("plen: %d, pe: %d, j: %d, , i: %d subs: %d slen: %d , res: %d \n", plen, pe, j, i, subs, slen,  res);
-
+                //Otherwise, I replace back all the letters that I had removed.
+                //Then, I change the upper boundary.
+            else {
+                for (int i=0;i<mid;i++) letters[removable[i]] = s.charAt(removable[i]);
+                r = mid-1;
             }
         }
-        return res;
-
-
+        return r;
     }
+
+    //This is a standard procedure for checking if p is a subsequence of the array of characters.
+    //I use two-pointers to keep track of which char I'm looking at now in the char array, and another to keep track of which char I'm looking at in p.
+    // If the character wasn't 'removed' (remember this is indicated by the '/' symbol) and the characters are equal, I increment both pointers.
+    //Otherwise, I only increment the first pointer pointing to the array of characters.
+    public boolean check(char[] letters, String p) {
+        int i1 = 0, i2 = 0;
+        while (i1 < letters.length && i2 < p.length()) {
+            char curr = letters[i1], curr2 = p.charAt(i2);
+            if (curr != '/' && curr == curr2) i2++;
+            i1++;
+        }
+
+        //If i2 == p.length(), it means that I had managed to match all of the characters in String p!
+        if (i2 == p.length()) return true;
+        return false;
+    }
+
+
+
 
     public static void main(String[] args) {
         String s = "abcacb", p = "ab";
@@ -58,7 +64,7 @@ public class Lc1898_MaxNumRemovableCharacters_M {
         //Output: 0
         //Explanation: If you remove the first index in the array removable, "abc" is no longer a subsequence.
 
-        System.out.println(maximumRemovals(s1, s2, arr));
+        //System.out.println(maximumRemovals(s1, s2, arr));
     }
 
 
