@@ -37,6 +37,7 @@ public class Lc1898_MaxNumRemovableCharacters_M {
     // If the character wasn't 'removed' (remember this is indicated by the '/' symbol) and the characters are equal, I increment both pointers.
     //Otherwise, I only increment the first pointer pointing to the array of characters.
     public boolean check(char[] letters, String p) {
+
         int i1 = 0, i2 = 0;
         while (i1 < letters.length && i2 < p.length()) {
             char curr = letters[i1], curr2 = p.charAt(i2);
