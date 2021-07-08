@@ -8,6 +8,7 @@ public class Lc532_KDiffPairsInArray_M {
     // since each answer has to be unique
     // special cases for when k==0, we would havve to make sure that
     // there's more than one frequency of that element
+    // note that we check for x+k which is key
 
     public static int findPairs(int[] nums, int k) {
         Map<Integer, Integer> cnt = new HashMap<>();
