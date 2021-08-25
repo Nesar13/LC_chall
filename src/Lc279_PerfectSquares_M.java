@@ -10,7 +10,7 @@ public class Lc279_PerfectSquares_M {
         dp[0] = 0;
 
         for(int i=1; i<=n; i++){
-
+        double s=Math.sqrt(i);
             for(int j=1; j<=Math.sqrt(i); j++){
                 int c=i-(j*j);
                 dp[i] = Math.min(dp[i], (dp[i-(j*j)]+1));
