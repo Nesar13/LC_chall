@@ -34,7 +34,7 @@ public class BuildingTree {
     }
 
     // just printing level order
-    private void printLevelOrder(TreeNode root) {
+    public void printLevelOrder(TreeNode root) {
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
         StringBuilder sb = new StringBuilder();
@@ -60,4 +60,13 @@ public class BuildingTree {
           this.left = left;
           this.right = right;
      }
-  }
+
+     @Override
+     public String toString() {
+         return "TreeNode{" +
+                 "val=" + val +
+                 ", left=" + left +
+                 ", right=" + right +
+                 '}';
+     }
+ }
