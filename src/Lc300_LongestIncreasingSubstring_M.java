@@ -12,6 +12,9 @@ public class Lc300_LongestIncreasingSubstring_M {
         //Output: 4
 
         int[] nums = {0, 1, 0, 3, 2, 3};
+
+        int i=Arrays.binarySearch(nums, 0, 3, 2);
+        System.out.println(i);
         System.out.println(lengthOfLIS5(nums));
 
     }
@@ -130,6 +133,12 @@ public class Lc300_LongestIncreasingSubstring_M {
         int[] dp = new int[nums.length];
         int len = 0;
         for (int num : nums) {
+            // binarySearch in java returns negative
+            // value if searched element is not found in
+            // arr, this negative value stores the
+            // appropriate place where the element is (-i-1) where i is the insertion point
+            // supposed to be stored
+            // note that our dp array will have nums that seem sorted
             int i = Arrays.binarySearch(dp, 0, len, num);
             if (i < 0) {
                 i = -(i + 1);
