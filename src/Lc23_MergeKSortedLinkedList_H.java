@@ -63,7 +63,7 @@ public class Lc23_MergeKSortedLinkedList_H {
         }
         return ans.next;
     }
-    // some
+    // some f
     public static ListNode mergeKLists2(ListNode[] lists) {
         if (lists.length == 0) {
             return null;
