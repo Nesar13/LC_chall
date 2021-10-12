@@ -20,6 +20,8 @@ public class LamdaExpressions {
 
 
     public static void main(String[] args) {
+        Deque<String> d=new ArrayDeque<>();
+
         PriorityQueue<Integer> pq=new PriorityQueue<>((x,y) -> y-x);
             List<Integer> list=new ArrayList<>();
             list.add(1);
