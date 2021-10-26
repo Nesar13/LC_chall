@@ -40,7 +40,8 @@ public class Lc23_MergeKSortedLinkedList_H {
         h.next = null;
         return head.next;
     }
-
+//  merge lists to the 0th list and then incrementing a variable by two times
+    // to get the the merged list that we have not yet merged
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode h = new ListNode(0);
         ListNode ans = h;
@@ -107,7 +108,7 @@ public class Lc23_MergeKSortedLinkedList_H {
 
         ListNode [] input=new ListNode[] {root1, root2, root3};
 
-        System.out.println(mergeKLists(input));
+        System.out.println(mergeKLists2(input));
 
 
     }
