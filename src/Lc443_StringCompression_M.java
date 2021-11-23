@@ -1,6 +1,10 @@
 public class Lc443_StringCompression_M {
 
 // we basically iterate through the char array
+    //we count the number of repetions of a char and
+    // it to our char array after the character
+    // note that we have to account for when frequency is greater than 10
+    // O(n) time | O (1) space
     public static int compress(char[] chars) {
         int indexAns = 0, index = 0;
         while(index < chars.length){
@@ -15,6 +19,7 @@ public class Lc443_StringCompression_M {
             if(count != 1)
                 // since we can have a frequency of a character be more than
                 // 10, we can convert  the count to a string and get the char array
+                // that we
                 for(char c : Integer.toString(count).toCharArray())
                     chars[indexAns++] = c;
         }
