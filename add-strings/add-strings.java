@@ -1,46 +1,25 @@
 class Solution {
     public String addStrings(String num1, String num2) {
-        
-        int num1Len=num1.length(); 
-        int num2Len=num2.length();
-        
-        int k=Math.max(num1Len, num2Len); 
-      StringBuilder sb=new StringBuilder(); 
-        int dec=0; 
-        int overflow=0; 
-       while (dec < k){
-            int val=0; 
-            char c1='0'; 
-             
-            if (dec < num1Len){
-                c1=num1.charAt(num1Len-1-dec); 
-                val =c1-'0'; 
+        int index1 = num1.length()-1;
+        int index2 = num2.length()-1;
+        int carry = 0;
+        StringBuilder sb = new StringBuilder();
+        while( index1 >=0 || index2 >=0 || carry >0){
+            int n1 = 0;
+            int n2 = 0;
+            if(index1 >=0){
+                n1 = num1.charAt(index1) - '0';
+                index1--;
             }
-            
-            if (dec < num2Len){
-                c1=num2.charAt(num2Len-1-dec); 
-                
-                val += c1-'0'; 
-                
-                
+            if(index2 >= 0){
+                n2 = num2.charAt(index2) - '0';
+                index2--;
             }
-            val+=overflow; 
-            
-          if( val > 9) {
-              overflow=val / 10 ; 
-              val=val % 10; 
- 
-          }  else overflow=0; 
-            
-             dec++;
-            sb.append(""+val); 
-  
-            
+            int sum = (n1 + n2 + carry) %10;
+            carry = (n1 + n2 + carry)/10;
+            sb.append(sum);
         }
-        
-        if(overflow > 0) sb.append(""+overflow); 
-        
-        return sb.reverse().toString(); 
+        return sb.reverse().toString();
         
     }
 }
