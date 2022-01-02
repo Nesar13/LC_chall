@@ -1,21 +1,25 @@
 class Solution {
     
-    public long maxPoints(int[][] p) {
-    long[] cur_row = new long[p[0].length], prev_row = new long[p[0].length];
-    for (var row : p) {
-        long run_max = 0;
-        for (int j = 0; j < row.length; ++j) {
-            run_max = Math.max(run_max - 1, prev_row[j]);
-            cur_row[j] = run_max;
+    public long maxPoints(int[][] points) {
+        int m = points[0].length;
+        long[] dp = new long[m];
+        for (int[] point : points) {
+            for (int j = 0; j < m; j++) {
+                dp[j] += point[j];
+            }
+            for (int j = 1; j < m; j++) {
+                dp[j] = Math.max(dp[j], dp[j - 1] - 1);
+            }
+            for (int j = m - 2; j >= 0; j--) {
+                dp[j] = Math.max(dp[j], dp[j + 1] - 1);
+            }
         }
-        for (int j = row.length - 1; j >= 0; --j) {
-            run_max = Math.max(run_max - 1, prev_row[j]);
-            cur_row[j] = Math.max(cur_row[j], run_max) + row[j];
+        long res = 0;
+        for (long e : dp) {
+            res = Math.max(res, e);
         }
-        prev_row = cur_row;
+        return res;
     }
-    return Arrays.stream(prev_row).max().getAsLong();
-}
     
   
 }
