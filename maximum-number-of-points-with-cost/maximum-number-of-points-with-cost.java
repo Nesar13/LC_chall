@@ -1,36 +1,21 @@
 class Solution {
-    public long maxPoints(int[][] points) {
-        
-  
-        int rows= points.length, cols=points[0].length;
-        Long [][] dp = new Long[rows][cols];
-        for(int i=0;i<cols;i++) {
-            dp[0][i] = Long.valueOf(points[0][i]);
+    
+    public long maxPoints(int[][] p) {
+    long[] cur_row = new long[p[0].length], prev_row = new long[p[0].length];
+    for (var row : p) {
+        long run_max = 0;
+        for (int j = 0; j < row.length; ++j) {
+            run_max = Math.max(run_max - 1, prev_row[j]);
+            cur_row[j] = run_max;
         }
-        
-        Long [] left = new Long[cols];
-        Long [] right = new Long[cols];
-        for(int i=1;i<rows;i++) {
-            left[0] = dp[i-1][0];
-            right[cols-1] = dp[i-1][cols-1];
-            //fill left
-            for(int k=1;k<cols;k++) {
-                left[k] = Math.max(left[k-1]-1,dp[i-1][k]);
-            }
-            //fill right
-            for(int k=cols-2;k>=0;k--) {
-                right[k] = Math.max(right[k+1]-1,dp[i-1][k]);
-            }
-            //fill dp
-            for(int k=0;k<cols;k++) {
-                dp[i][k] = Math.max(left[k], right[k])+points[i][k];
-            }  
+        for (int j = row.length - 1; j >= 0; --j) {
+            run_max = Math.max(run_max - 1, prev_row[j]);
+            cur_row[j] = Math.max(cur_row[j], run_max) + row[j];
         }
-        // result is the max of last row
-        Long maxPoints = Long.valueOf(-1);
-        for(int i=0;i<cols;i++) {
-            maxPoints = Math.max(maxPoints, dp[rows-1][i]);
-        }        
-        return maxPoints;
+        prev_row = cur_row;
     }
+    return Arrays.stream(prev_row).max().getAsLong();
+}
+    
+  
 }
