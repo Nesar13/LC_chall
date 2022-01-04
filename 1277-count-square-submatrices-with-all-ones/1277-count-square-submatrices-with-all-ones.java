@@ -13,7 +13,6 @@ class Solution {
             
             int curr=matrix[0][i]; 
             sum+=curr; 
-            
             dp[0][i]=curr; 
             
         }
@@ -21,7 +20,7 @@ class Solution {
         for (int i=1; i < rows; i++){
             int curr=matrix[i][0]; 
             sum+= curr; 
-            dp[i][0]=matrix[i][0]; 
+            dp[i][0]=curr; 
             
         }
         
