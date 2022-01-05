@@ -2,17 +2,19 @@ class BrowserHistory {
 
     List<String> history; 
     int curr;  
+    int size; 
     public BrowserHistory(String homepage) {
         history=new ArrayList(); 
         history.add(homepage); 
         curr=0; 
-        
+        size=1; 
     }
     
     public void visit(String url) {
-        history.subList(curr+1, history.size()).clear(); 
-        history.add(url); 
+        if (curr+1 <  history.size()) history.set(curr+1, url); 
+        else history.add(url); 
         curr++; 
+        size=curr+1; 
        
         
         
@@ -27,7 +29,7 @@ class BrowserHistory {
     }
     
     public String forward(int steps) {
-        curr=Math.min(curr+steps, history.size()-1); 
+        curr=Math.min(curr+steps, size-1); 
         return history.get(curr); 
     }
 }
