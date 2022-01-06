@@ -1,23 +1,16 @@
 class ParkingSystem {
     
-   int[] arr; 
+      int[] parking;
     public ParkingSystem(int big, int medium, int small) {
-        
-        arr= new int[4]; 
-        
-        arr[1]=big; 
-        arr[2]=medium; 
-        arr[3]=small; 
+        parking = new int[] {big , medium ,small};
     }
     
     public boolean addCar(int carType) {
-       if (arr[carType] > 0){
-           arr[carType]--; 
-           return true; 
-       }
-        
-        return false; 
-        
+        if(parking[carType - 1] > 0){
+            parking[carType - 1]--;
+            return true;
+        }
+        return false;
     }
 }
 
