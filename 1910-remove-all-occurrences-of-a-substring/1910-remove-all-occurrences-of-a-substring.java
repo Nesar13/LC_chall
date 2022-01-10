@@ -1,71 +1,73 @@
 class Solution {
-//     //"hijzgaovndkjiiuwjtcpdpbkrfsi"
-//        public String removeOccurrences(String s, String part) {
-        
-//         int len=s.length(); 
-//         int plen=part.length(); 
-//         if (plen > len) return s; 
-        
-//         boolean moreWork=true; 
-        
-       
-//         StringBuilder sb=new StringBuilder(s); 
-//         StringBuilder newSb=new StringBuilder(); 
-//         while(moreWork){
-            
-//             moreWork=false; 
-            
-//             int S= sb.length(); 
-//             int count=0; 
-//             StringBuilder temp=new StringBuilder(); 
-//             newSb=new StringBuilder(); 
-            
-            
-//             // sb: da
-//             // temp: abc
-//             for(int i=0; i < S; i++){
-                
-//                 char c=sb.charAt(i); 
-                
-//                 char p=part.charAt(count); 
-//                 if (c != p) {
-//                     if (temp.length() != 0 ) 
-//                         newSb.append(temp); 
-                    
-//                     temp=new StringBuilder(); 
-//                     count=0; 
-//                     if (c==part.charAt(count)) {
-//                         temp.append(c); 
-//                         count++; 
-//                     }
-//                     else  newSb.append(c);
-//                 }
-//                 if (c==p){
-//                     temp.append(c); 
-//                     count++;  
-//                 }
-                
-//                 if(count==plen) {
-//                      moreWork=true; 
-//                     temp=new StringBuilder(); 
-//                     count=0; 
-//                  }
-                
-                   
-//             }
-            
-//             if (temp.length() != 0) newSb.append(temp);
-//             sb=new StringBuilder(newSb); 
-            
-            
-            
-//         }
-        
-//         return sb.toString(); 
-        
-//     }
     
-      public String removeOccurrences(String s, String p) {
-        return s.contains(p) ? removeOccurrences(s.replaceFirst(p, ""), p) : s;
+       public String removeOccurrences(String s, String part) {
+        int[] kmpPattern = findKmpPattern(part);
+        
+        // using stack to easily delete characters when a pattern is found.
+        Stack<Character> stack = new Stack<>();
+        
+        // using index array to store 'j' (index of part) so that after character deletion we can resume 
+        int[] idxArr = new int[s.length() + 1];
+        
+        for(int i=0, j=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            stack.push(ch);
+            
+            if(ch == part.charAt(j)){
+            	// storing the next index of 'j' 
+                idxArr[stack.size()] = ++j;
+                
+                if(j == part.length()){
+                	// deleting character when a pattern match is found
+                    int count = part.length();
+                    while(count != 0){
+                        stack.pop();
+                        count--;
+                    }
+                    
+                    // restoring the index of 'j' for finding next pattern.
+                    j = stack.isEmpty() ? 0 : idxArr[stack.size()];
+                }
+            }
+            
+            else{
+                if(j != 0){
+                    i--;
+                    j = kmpPattern[j-1];
+                    stack.pop();
+                }
+                else {
+                	// if the current stack is not empty and j == 0, we need to correct the previously stored index of 'j'
+                	idxArr[stack.size()] = 0;
+                }
+            }
+        }
+        
+        // Creating a string out of the left over characters in the stack
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()){
+            sb.append(stack.pop());
+        }
+        
+        return sb.reverse().toString();
+    }
+    
+    private int[] findKmpPattern(String s){
+        int[] arr = new int[s.length()];
+        
+        for(int i=1, j=0; i<s.length(); ){
+            if(s.charAt(i) == s.charAt(j)){
+                arr[i] = ++j;
+                i++;
+            }
+            else if(j != 0){
+                j = arr[j-1];
+            }
+            else{
+                i++;
+            }
+        }
+        
+        return arr;
     }
 }
