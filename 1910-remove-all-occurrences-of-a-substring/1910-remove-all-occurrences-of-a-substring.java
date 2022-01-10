@@ -16,8 +16,8 @@ class Solution {
         int i = sb.indexOf(part, pre);
         while (i >= 0) {
             sb.replace(i, i + part.length(), "");
-            pre = Math.max(0, i - part.length() + 1);
-            i = sb.indexOf(part, pre);
+           // pre = Math.max(0, i - part.length() + 1);
+            i = sb.indexOf(part);
         }
         return sb.toString();
     }
