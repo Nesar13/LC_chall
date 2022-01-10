@@ -16,8 +16,12 @@ class Solution {
         int i = sb.indexOf(part, pre);
         while (i >= 0) {
             sb.replace(i, i + part.length(), "");
-           // pre = Math.max(0, i - part.length() + 1);
-            i = sb.indexOf(part);
+          
+            // given like ababcc and part=abc
+            // we would get abc after first erasure, so we want to start two indexes less because we 
+            // wwant to take into consideration the the character after being erased
+           pre = Math.max(0, i - part.length() + 1);
+            i = sb.indexOf(part, pre);
         }
         return sb.toString();
     }
