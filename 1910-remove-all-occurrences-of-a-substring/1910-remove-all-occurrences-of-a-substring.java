@@ -1,73 +1,13 @@
 class Solution {
-    
-       public String removeOccurrences(String s, String part) {
-        int[] kmpPattern = findKmpPattern(part);
-        
-        // using stack to easily delete characters when a pattern is found.
-        Stack<Character> stack = new Stack<>();
-        
-        // using index array to store 'j' (index of part) so that after character deletion we can resume 
-        int[] idxArr = new int[s.length() + 1];
-        
-        for(int i=0, j=0; i<s.length(); i++){
-            char ch = s.charAt(i);
-            stack.push(ch);
-            
-            if(ch == part.charAt(j)){
-            	// storing the next index of 'j' 
-                idxArr[stack.size()] = ++j;
-                
-                if(j == part.length()){
-                	// deleting character when a pattern match is found
-                    int count = part.length();
-                    while(count != 0){
-                        stack.pop();
-                        count--;
-                    }
-                    
-                    // restoring the index of 'j' for finding next pattern.
-                    j = stack.isEmpty() ? 0 : idxArr[stack.size()];
-                }
-            }
-            
-            else{
-                if(j != 0){
-                    i--;
-                    j = kmpPattern[j-1];
-                    stack.pop();
-                }
-                else {
-                	// if the current stack is not empty and j == 0, we need to correct the previously stored index of 'j'
-                	idxArr[stack.size()] = 0;
-                }
-            }
+    //"hijzgaovndkjiiuwjtcpdpbkrfsi"
+        public String removeOccurrences(String s, String part) {
+        StringBuilder sb=new StringBuilder(s); 
+        int plen=part.length();
+        while(true)
+        {
+            int index=s.indexOf(part);
+            if(index==-1) return s;
+            s=s.substring(0,index)+s.substring(index+plen);
         }
-        
-        // Creating a string out of the left over characters in the stack
-        StringBuilder sb = new StringBuilder();
-        while(!stack.isEmpty()){
-            sb.append(stack.pop());
-        }
-        
-        return sb.reverse().toString();
-    }
-    
-    private int[] findKmpPattern(String s){
-        int[] arr = new int[s.length()];
-        
-        for(int i=1, j=0; i<s.length(); ){
-            if(s.charAt(i) == s.charAt(j)){
-                arr[i] = ++j;
-                i++;
-            }
-            else if(j != 0){
-                j = arr[j-1];
-            }
-            else{
-                i++;
-            }
-        }
-        
-        return arr;
     }
 }
