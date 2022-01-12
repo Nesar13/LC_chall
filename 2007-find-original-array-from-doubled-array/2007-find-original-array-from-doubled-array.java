@@ -16,12 +16,12 @@ class Solution {
         
         int idx=0;
         
-        for(int no=0; no<freq.length; no++){
+        for(int i=0; i<freq.length; i++){
             
-            while(freq[no] > 0 && no*2 < 100001 && freq[no*2]>0){
-                freq[no]--;
-                freq[no*2]--;
-                res[idx++] = no;
+            while(freq[i] > 0 && i*2 < 100001 && freq[i*2]>0){
+                freq[i]--;
+                freq[i*2]--;
+                res[idx++] = i;
             }
         }
         
