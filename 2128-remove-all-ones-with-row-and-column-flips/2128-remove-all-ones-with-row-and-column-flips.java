@@ -24,12 +24,12 @@ class Solution {
             }
             String s=sb.toString(); 
             if (map.containsKey(s)){
-                map.put(s, map.getOrDefault(s, 0)+1); 
+                map.put(s,1); 
             }
             else {
                 String rev=revMat.toString(); 
                 if (!map.containsKey(rev)) return false; 
-                map.put(rev, map.getOrDefault(rev, 0)+1 );
+                map.put(rev, 1 );
             }
             
             
