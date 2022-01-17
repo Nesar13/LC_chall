@@ -15,7 +15,13 @@
  */
 class Solution {
     
-   
+   // 1) realize that post is LRroot so we can search for root in the postorder
+    // we just have to keep a left and right boundary in the postorder 
+    // 2) we just have a globable preIndex that we constantly increment
+    // and get the mid(aka root) so we know everything to left is going to be left and right
+    // children
+    // O(N) time | O(N) space
+    
     HashMap<Integer, Integer> postMap;
     int preIndex=0; 
     public TreeNode constructFromPrePost(int[] pre, int[] post) {
@@ -33,11 +39,11 @@ class Solution {
         if (i >j) return null;
         TreeNode root=new TreeNode(pre[preIndex++]); 
        
-        if (i==j) return root; 
+        if (i==j) return root; // because we completed the subtree
         int mid=postMap.get(pre[preIndex]);
         
         root.left=helper(pre, post, i, mid); 
-        root.right=helper(pre, post, mid+1, j-1);
+        root.right=helper(pre, post, mid+1, j-1); // note that right side is j-1 so we lower boundary
         
         
         return root; 
