@@ -1,23 +1,31 @@
 class Solution {
     public int calculateTime(String keyboard, String word) {
         
-        HashMap<Character, Integer> map=new HashMap(); 
-        
-        for (int i=0; i < keyboard.length(); i++){
-            
-            char c=keyboard.charAt(i); 
-            map.put(c, i); 
-        }
-        
-        int res=map.get(word.charAt(0)); 
-        for (int i=1; i < word.length(); i++){
+        int[] keyIndices = new int[26];
+
+        // Get the index for each key.
+        for (int i = 0; i < keyboard.length(); i++)
+            keyIndices[keyboard.charAt(i) - 'a'] = i;
+
+        // Initialize previous index as starting index = 0.
+        int prev = 0;
+        int result = 0;
+
+        // Calculate the total time.
+        for (int i =0; i < word.length(); i++) {
             char c=word.charAt(i); 
-            char prev=word.charAt(i-1); 
-            res += Math.abs(map.get(c) - map.get(prev)); 
+            
+            
+            // Add the distance from previous index
+            // to current letter's index to the result.
+            result += Math.abs(prev - keyIndices[c - 'a']);
+
+            // Update the previous index to current index for next iteration.
+            prev = keyIndices[c - 'a'];
         }
-        
-        return res; 
-        
-        
+        return result;
     }
+        
+        
+    
 }
