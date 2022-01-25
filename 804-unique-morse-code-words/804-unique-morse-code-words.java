@@ -16,12 +16,12 @@ class Solution {
                 sb.append(MORSE[w.charAt(i)-'a']); 
                 
             }
-            if (!set.contains(sb.toString())) 
-                res++;
+            // if (!set.contains(sb.toString())) 
+            //     res++;
             set.add(sb.toString());
         }
         
         
-        return res; 
+        return set.size(); 
     }
 }
