@@ -9,7 +9,7 @@ class Solution {
             } else {
                 result.append(word.reverse());
                 result.append(" ");
-                word.setLength(0);
+                word=new StringBuilder();
             }
         }
         result.append(word.reverse());
