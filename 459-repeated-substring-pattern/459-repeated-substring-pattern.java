@@ -16,7 +16,7 @@ class Solution {
                 i++;
             }
         }
-        System.out.println(Arrays.toString(lps)); 
+         
         
         if(lps[lps.length - 1] == 0) return false;
         
