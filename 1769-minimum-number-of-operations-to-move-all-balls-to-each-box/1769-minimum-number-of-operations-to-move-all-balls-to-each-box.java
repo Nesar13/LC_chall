@@ -1,14 +1,17 @@
 class Solution {
-    //1xxx0
-    //1110
-    //11011
-    //left 013
-    
-    //0011
-    //10 - 1 move
-    //110 - 3 moves
-    //1110 - 6 moves ()
-    //11110 - 4+3+2+1
+   
+    //input:    11011
+    //left:     01358
+    //right:    85310 starting at right side
+    //total:    86668 (left+right)
+    //1) intially I thought it we should just keep track of the number 
+    //  of balls in the left and right side using arrays
+    //  but this method does not consider the relative position 
+    //2)  We have to ask  ourselves how many total steps does it take for
+    //  the balls to reach us
+    // so we can keep track of the number of balls 
+    // and add it to the current ith index along with the left value 
+    // for the left array and the right value for the right array
     public int[] minOperations(String boxes) {
         
         int N=boxes.length(); 
@@ -27,7 +30,7 @@ class Solution {
         for (int i=N-2; i>=0 ; i--){
             char c=boxes.charAt(i); 
             right[i] +=right[i+1] + balls; 
-           balls += c - '0'; 
+            balls += c - '0'; 
             
         }
         
@@ -46,10 +49,4 @@ class Solution {
     }
     
     
-   int getSum(int n){
-        int temp=0;
-        while (n >0)temp += n--; 
-        
-       return temp; 
-    }
 }
