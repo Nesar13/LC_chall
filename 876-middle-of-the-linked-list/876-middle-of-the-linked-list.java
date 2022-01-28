@@ -26,7 +26,7 @@ class Solution {
         
         int middle=len/2 +1; 
         
-        System.out.println(middle);
+      
         
         while ( middle > 1){
           
