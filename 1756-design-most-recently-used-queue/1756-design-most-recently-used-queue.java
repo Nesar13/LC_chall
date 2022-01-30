@@ -15,7 +15,7 @@ class MRUQueue {
     
     public int fetch(int k) {
         
-        if (k==s) return q.get(k-1); 
+     
         int temp=q.remove(k-1); 
         q.add(temp); 
         
