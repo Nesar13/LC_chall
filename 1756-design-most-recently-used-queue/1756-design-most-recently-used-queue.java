@@ -15,15 +15,8 @@ class MRUQueue {
     
     public int fetch(int k) {
         
-        int temp=q.get(k-1);
-        List<Integer> copy=new ArrayList<>(); 
-        
-        for (int i: q){
-            if (i != temp){
-                copy.add(i); 
-            }
-        }
-        q=new ArrayList(copy);
+  
+        int temp=q.remove(k-1); 
         q.add(temp); 
         
         return temp; 
