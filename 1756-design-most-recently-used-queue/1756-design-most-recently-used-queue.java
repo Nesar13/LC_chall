@@ -1,12 +1,12 @@
 class MRUQueue {
  
     List<Integer> q; 
-    int s; 
+  
     public MRUQueue(int n) {
         q=new ArrayList<>(); 
-        s=n; 
+      
         
-        for (int i=0; i < s; i++){
+        for (int i=0; i < n; i++){
             
             q.add(i+1); 
             
