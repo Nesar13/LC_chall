@@ -1,4 +1,13 @@
 class Solution {
+    
+    // 1) my first intuition was that we can perhaps to a smart precomputation
+    // but i found out we can compute the geometric pattern
+    // 2) We can get the min and max in a range, and add min and max and divide by the total nums -1
+    // to get the geometric pattern
+    // 3) Then we can use the pattern to remake the range if it is a geometric sequence by comparing
+    // it to our original range in a set
+    // O(n*m) time where n is length of l, and m is the total length of array
+    // O(n) space if we use a hashset
       public List<Boolean> checkArithmeticSubarrays(int[] nums, int[] l, int[] r) {
         List<Boolean> res = new ArrayList<Boolean>();
         for(int i = 0; i < l.length; i++) {
