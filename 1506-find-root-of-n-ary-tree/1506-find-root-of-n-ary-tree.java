@@ -24,24 +24,25 @@ class Node {
 class Solution {
     public Node findRoot(List<Node> tree) {
         
-        Set<Node> set=new HashSet(); 
+
         
-        
+        int sum=0; 
         
         for (int i =0; i < tree.size();i++) {
             
             Node curr=tree.get(i); 
             
+            sum += curr.val; 
             for(Node child: curr.children){
-                set.add(child); 
+               sum -=child.val; 
             }
         }
         
         
         
-        for (int i =0; i < tree.size();i++) {
+        for (Node n: tree) {
             
-            if(!set.contains(tree.get(i))) return tree.get(i); 
+            if(n.val==sum) return n;  
         }
         
         
