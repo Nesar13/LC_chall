@@ -1,6 +1,7 @@
 class CustomStack {
     
     List<Integer> lst; 
+    int[] inc; 
     int maxSize;
     int currSize; 
 
@@ -9,6 +10,7 @@ class CustomStack {
         lst=new ArrayList<>(); 
         this.maxSize=maxSize; 
         currSize=0; 
+        inc=new int[maxSize]; 
     }
     
     public void push(int x) {
@@ -22,16 +24,25 @@ class CustomStack {
     
     public int pop() {
         if (currSize==0) return -1; 
-        return lst.remove((currSize--)- 1); 
+        
+        if (currSize -2 >= 0) {
+            
+            inc[currSize-2] += inc[currSize-1]; 
+        }
+        
+        int res=inc[currSize-1] + lst.remove((currSize)- 1); 
+        inc[currSize-1]=0; 
+        currSize--; 
+       
+        return  res;  
         
     }
     
     public void increment(int k, int val) {
             int min=Math.min(k, currSize);
             
-            for (int i=0; i< min; i++){
-                
-                lst.set(i, lst.get(i)+val); 
+            if(min-1 >=0){
+                inc[min-1] +=val; 
             }
         }
     
