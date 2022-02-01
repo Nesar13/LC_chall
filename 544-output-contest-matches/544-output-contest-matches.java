@@ -1,7 +1,7 @@
 class Solution {
     public String findContestMatch(int n) {
         List<String> matches = new ArrayList<>();
-        for(int i = 1; i <= n; i++) matches.add(""+i);
+        for(int i = 1; i <= n; i++) matches.add(String.valueOf(i));
         
         
         while (matches.size() != 1){
