@@ -38,19 +38,23 @@ class Solution {
         
           if (root.left != null && root.left.val==x ){
              depthX=depth+1; 
-            parentX=root.val;
+             parentX=root.val;
+              return; 
         }
         if ( root.right != null && root.right.val==x){
             depthX=depth+1; 
             parentX=root.val; 
+            return; 
         }
         if (root.left != null && root.left.val==y ){
             depthY=depth+1; 
             parentY=root.val; 
+            return; 
         }
         if ( root.right != null && root.right.val==y){
             depthY=depth+1; 
             parentY=root.val; 
+            return; 
         }
     
         
