@@ -12,8 +12,10 @@ class Solution {
             char r=currentState.charAt(right); 
             
             if(l=='+' && r=='+'){
-                res.add(currentState.substring(0, left)+ "--"+ 
-                        currentState.substring(right+1,len));
+                StringBuilder sb=new StringBuilder(); 
+                sb.append(currentState.substring(0, left)).
+                    append("--").append(currentState.substring(right+1,len)); 
+                res.add(sb.toString()); 
                 left++; 
                 right++; 
                 
