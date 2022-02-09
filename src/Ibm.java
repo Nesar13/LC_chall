@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Ibm {
@@ -57,5 +58,13 @@ public class Ibm {
         List<Integer> li= new ArrayList<Integer>(Arrays.asList(1,0,1,0,0,0,0,1));
 
 
-        System.out.println(minMoves(li));
+       // System.out.println(minMoves(li));
+
+        LinkedList <Integer> l=new LinkedList<>();
+
+        l.add(1);
+        l.add(3);
+        l.add(4);
+
+        System.out.println(l);
 }}

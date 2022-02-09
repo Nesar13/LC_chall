@@ -3,7 +3,24 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Lc679_24Game_H {
+
+    // we have to go through every permutation
+    // so we know that we have to do a backtracking solution
+    // 1) we have to first convert the integer array into a doubles list
+    //    since we can have an overflow if we multiply large integers
+    // 2) we have to use two for loops to get two numbers from our list and
+    //    then create every possible combination with math operators
+    //    like a-b,b-a, a*b, a+b, a/b, b/a
+    //    and store this in our auxiliary array
+    // 3) we have to remove the two numbers we used from our list since we
+    //    do not want to use those two combinations again
+    // 4) we add from our auxiliary array next to our main list and do a recursion
+    // 5) remove the end num from our recursion in typical backtracking fashion
+    // 6) add back the two numbers we used in their corresponding places
     static boolean res = false;
+
+    // we use this because if we have  2/3 + 1/3 = .999 but not quite 1 so
+    // if the difference between 24 and our num is less thant .001, it will be true
     final static double eps = 0.001;
 
     public static boolean judgePoint24(int[] nums) {
@@ -41,6 +58,7 @@ public class Lc679_24Game_H {
         }
     }
     public static void main(String[] args) {
-        System.out.println(judgePoint24(new int[] {4,1,8,7}));
+        //System.out.println(judgePoint24(new int[] {4,1,8,7}));
+        System.out.println(judgePoint24(new int[] {20,4,1,1}));
     }
 }
