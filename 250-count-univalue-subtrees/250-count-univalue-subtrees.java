@@ -28,7 +28,8 @@ class Solution {
         boolean left= helper(root.left); 
         boolean right = helper(root.right); 
         
-      
+       // if left and right are true, it can mean that they were null or something
+       // we need to verify that the left and right are equal to val before we return true
        if(left && right){
            if(root.left != null && root.val !=root.left.val) return false; 
            if (root.right != null && root.val != root.right.val) return false; 
