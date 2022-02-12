@@ -3,16 +3,13 @@ class ZeroEvenOdd {
     Semaphore z; 
     Semaphore e; 
     Semaphore o; 
-    AtomicInteger nCount; 
-    AtomicInteger output;
+
     public ZeroEvenOdd(int n) {
         this.n = n;
         
         z=new Semaphore(1, true); 
         e=new Semaphore(0, true); 
         o=new Semaphore(0, true); 
-        nCount=new AtomicInteger(0); 
-        output=new AtomicInteger(1); 
         
     }
 
