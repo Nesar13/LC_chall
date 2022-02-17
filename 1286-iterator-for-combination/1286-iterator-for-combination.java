@@ -1,16 +1,15 @@
 class CombinationIterator {
     
-    TreeSet<String> set; 
-    String[] sortedString;
+   List<String> res; 
+   
     int currIndex;
 
     public CombinationIterator(String characters, int combinationLength) {
-        set=new TreeSet(); 
+        res=new ArrayList<>();  
         StringBuilder sb=new StringBuilder(); 
         currIndex=0; 
         createCombination(characters, combinationLength, 0, sb); 
-        sortedString=new String[set.size()]; 
-        populateString(); 
+      
        
         
     }
@@ -18,7 +17,7 @@ class CombinationIterator {
     void createCombination(String characters, int combinationLength, int start, StringBuilder sb){
         
         if (sb.length()== combinationLength) {
-            set.add(sb.toString()); 
+            res.add(sb.toString()); 
             return; 
           
         }
@@ -33,26 +32,15 @@ class CombinationIterator {
     }
     
     
-    void populateString(){
-        System.out.println(set);
-        int s=set.size(); 
-        for (int i=0; i< s; i++){
-            
-            sortedString[i]=set.pollFirst(); 
-        }
-        
-    }
     
     public String next() {
-        if (currIndex >= sortedString.length ) return "";
-        String s=sortedString[currIndex];
-        currIndex++; 
-        return s; 
+        if (currIndex >=res.size() ) return ""; 
+        return res.get(currIndex++);
     }
     
     public boolean hasNext() {
     
-        if(currIndex >= sortedString.length) 
+        if(currIndex >= res.size()) 
             return false; 
         
         return true; 
