@@ -19,6 +19,7 @@ class CombinationIterator {
         
         if (sb.length()== combinationLength) {
             set.add(sb.toString()); 
+            return; 
           
         }
         if(sb.length() > combinationLength) return;
