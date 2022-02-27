@@ -10,7 +10,8 @@ class Solution {
     public int search(ArrayReader reader, int target) {
         
         int left=0; 
-        int right=10000; 
+        int right=1; 
+        while(reader.get(right) < target) right= right << 1; 
         
         while (left <= right){
             int mid=left+(right-left)/2; 
