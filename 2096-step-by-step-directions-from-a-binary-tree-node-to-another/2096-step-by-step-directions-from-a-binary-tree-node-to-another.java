@@ -14,23 +14,35 @@
  * }
  */
 class Solution {
-  private boolean find(TreeNode n, int val, StringBuilder sb) {
-    if (n==null) return false; 
-    if (n.val == val) 
-        return true;
-    if (find(n.left, val, sb))
-        sb.append("L");
-    else if (find(n.right, val, sb))
-        sb.append("R");
-    return sb.length() > 0;
-}
-public String getDirections(TreeNode root, int startValue, int destValue) {
-    StringBuilder s = new StringBuilder(), d = new StringBuilder();
-    find(root, startValue, s);
-    find(root, destValue, d);
-    int i = 0, max_i = Math.min(d.length(), s.length());
-    while (i < max_i && s.charAt(s.length() - i - 1) == d.charAt(d.length() - i - 1))
-        ++i;
-    return "U".repeat(s.length() - i) + d.reverse().toString().substring(i);
-}
+     public String getDirections(TreeNode root, int startValue, int destValue) {
+        StringBuilder sb1 = new StringBuilder(), sb2 = new StringBuilder();
+        helper(root, startValue, sb1);
+        helper(root, destValue, sb2);
+        String s1 = sb1.reverse().toString();
+        String s2 = sb2.reverse().toString();
+        
+        int count = 0, i = 0, j = 0;
+        while (i < s1.length() && j < s2.length()) {
+            if (s1.charAt(i) == s2.charAt(j)) {
+                i++;
+                j++;
+                count++;
+            } else
+                break;
+        }
+        
+        return "U".repeat(s1.length() - count) + s2.substring(count);
+    }
+    
+    private boolean helper(TreeNode node, int target, StringBuilder sb) {
+        if (node == null) return false;
+        if (node.val == target) return true;
+        boolean left = helper(node.left, target, sb);
+        boolean right = helper(node.right, target, sb);
+        if (left)
+            sb.append("L");
+        else if (right)
+            sb.append("R");
+        return left || right;
+    }
 }
