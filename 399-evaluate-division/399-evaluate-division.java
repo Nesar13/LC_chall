@@ -1,18 +1,16 @@
 class Solution {
     
-    // a /b= 2
-    // b/c=3 => b=3c
+
     
-    //a/c=6
-    
-    // a->b : 2
-    // b->a : 1/2
-    // b->c : 3
-    // c->b= 1/3
-    // a -> b - > c
-   // a-b-c
-   
-    
+    // we can set up a graph relationship
+    // for example, if we take a b c
+    // where a/b = 2, b/c=3
+    // we can set up our graph like this: 
+    //      2     3 
+   // a ->  b ->  c
+   //1/2   1/3     
+   // if we go from a to c, we just have multiply the values across so 2*3 to get a/c
+   // if we go from c to a, we just have to inverse the valuese so 1/2 * 1/3 to get c/a
     
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         
@@ -74,8 +72,6 @@ class Solution {
         
         if (neighbors.containsKey(targetNode))
             res=accProduct * neighbors.get(targetNode); 
-        
-        
         else {
             
             for (Map.Entry<String, Double> pair : neighbors.entrySet()) {
@@ -88,11 +84,9 @@ class Solution {
                     break; 
                 
             }
-            
-            
         }
         
-        visited.remove(currNode); 
+        //visited.remove(currNode); 
         return res; 
     }
     
