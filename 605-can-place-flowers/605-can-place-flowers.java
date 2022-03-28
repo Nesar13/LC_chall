@@ -12,6 +12,7 @@ public class Solution {
                 if (emptyLeftPlot && emptyRightPlot) {
                     flowerbed[i] = 1;
                     count++;
+                    i++; 
                     if (count >= n) {
                         return true;
                     }
