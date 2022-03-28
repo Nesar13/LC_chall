@@ -27,7 +27,7 @@ class Solution {
       if (targetSum==curr+root.val && (root.left==null && root.right==null)) return true; 
        boolean left=dfs(root.left, targetSum, curr+root.val); 
        boolean right=dfs(root.right, targetSum,curr+root.val );
-        System.out.println(curr);
+       
         return left || right; 
     }
     
