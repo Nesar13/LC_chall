@@ -25,12 +25,12 @@ class Solution {
             char c=guess.charAt(i); 
             char s=secret.charAt(i); 
             if(c==s) continue;
-            if (map.containsKey(c)){
+            if (map.containsKey(c) && (map.get(c) > 0)){
                 
-                if(map.get(c) > 0) {
+              
                     map.put(c, map.getOrDefault(c, 0) - 1); 
                     cows++; 
-                }
+                
             }
         }
         
