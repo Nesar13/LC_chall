@@ -16,56 +16,52 @@
 class Solution {
     // Handle cases where they share same parent
     //count depth
-    
-    int parentX=-1; 
-    int parentY=-1; 
-    int depthX=-1; 
-    int depthY=-1; 
+    int xParent; 
+    int yParent;
+    int xDepth;
+    int yDepth; 
     public boolean isCousins(TreeNode root, int x, int y) {
         
+        xParent=-1; 
+        yParent=-1;
+        xDepth=-1; 
+        yDepth=-1; 
         
-        findCousins(root, x, y, 0); 
-        if (parentX != -1 && parentX !=parentY && depthX != -1 && depthX==depthY){
-            return true; 
-        }
+       // find depth of both 
+        // find parents of both
+        find(root, x, y, 0); 
+        if (xParent != -1 && yParent != -1 && (xParent != yParent) && yDepth !=-1 && (yDepth == xDepth)) return true; 
         return false; 
+    
     }
     
-    
-    
-    void findCousins(TreeNode root, int x, int y, int depth){
-        if(root==null) return; 
+    void find(TreeNode root, int x, int y, int depth){
+        if (root==null) return; 
         
-          if (root.left != null && root.left.val==x ){
-             depthX=depth+1; 
-             parentX=root.val;
-              return; 
+        if (root.left != null && root.left.val==x) {
+            xParent=root.val; 
+            xDepth=depth+1; 
+            
+            
         }
-        if ( root.right != null && root.right.val==x){
-            depthX=depth+1; 
-            parentX=root.val; 
-            return; 
+        if (root.left != null && root.left.val==y) {
+            yParent=root.val; 
+            yDepth=depth+1; 
         }
-        if (root.left != null && root.left.val==y ){
-            depthY=depth+1; 
-            parentY=root.val; 
-            return; 
+        if (root.right != null && root.right.val==x) {
+            xParent=root.val; 
+            xDepth=depth+1; 
         }
-        if ( root.right != null && root.right.val==y){
-            depthY=depth+1; 
-            parentY=root.val; 
-            return; 
+        if (root.right != null && root.right.val==y) {
+            yParent=root.val;
+            yDepth=depth+1; 
         }
-    
         
-        findCousins(root.left, x, y, depth+1); 
-        findCousins(root.right, x, y, depth+1); 
-        
-      
-        
-        
-        return; 
+        find(root.left, x, y, depth+1); 
+        find(root.right, x, y, depth+1); 
         
         
     }
+    
+   
 }
