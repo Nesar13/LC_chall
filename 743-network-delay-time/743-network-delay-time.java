@@ -32,7 +32,7 @@ class Solution {
                 int currTime=curr[1]; 
                 visited.add(currNode); 
                 //if(visited.size() ==n) res=Math.min(res,currTime); 
-                if(visited.size() ==n) return currTime; 
+                if(visited.size() ==n) return currTime; // we can just return the first time where we visit all nodes, since that will be the smallest time
 
                 for (List<Integer> neighbor: graph.get(currNode)){
                     if (visited.contains((neighbor.get(0)))) continue; 
@@ -47,7 +47,8 @@ class Solution {
         }
         
         
-        return visited.size()==n? res: -1; 
+        //return visited.size()==n? res: -1; 
+        return -1;
         
     }
 }
