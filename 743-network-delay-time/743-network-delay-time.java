@@ -31,7 +31,9 @@ class Solution {
                 int currNode=curr[0]; 
                 int currTime=curr[1]; 
                 visited.add(currNode); 
-                if(visited.size() ==n) res=Math.min(res,currTime); 
+                //if(visited.size() ==n) res=Math.min(res,currTime); 
+                if(visited.size() ==n) return currTime; 
+
                 for (List<Integer> neighbor: graph.get(currNode)){
                     if (visited.contains((neighbor.get(0)))) continue; 
                     
