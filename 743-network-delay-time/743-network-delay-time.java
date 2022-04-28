@@ -25,7 +25,7 @@ class Solution {
             
             int s=pq.size(); 
             
-            for(int i=0; i <s; i++ ){
+            //for(int i=0; i <s; i++ ){
                
                 int[] curr=pq.poll();
                 int currNode=curr[0]; 
@@ -40,7 +40,7 @@ class Solution {
                    
                 }
                 
-            }
+          //  }
             
         }
         
