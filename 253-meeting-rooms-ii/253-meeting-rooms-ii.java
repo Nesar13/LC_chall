@@ -14,26 +14,26 @@ class Solution {
         
         Arrays.sort(start); 
         Arrays.sort(end); 
-        int i=0; // start time pointer
-        int j=0; // end time pointer
-        int numRooms=0; 
+        int i=0; 
+        int j=0;
+        int numOfMeetings=0; 
         int res=0; 
         while(i < intervals.length){
-            // means we need an additional meeting room since
-            // start is lower than end time
-            if (start[i] >= end[j]) {
-                j++; 
-                numRooms--; 
-                
-            } 
-           
-            numRooms++; 
-            i++; 
-          
+            
+            if (start[i] < end[j]) {
+                i++; 
+                numOfMeetings++; 
+            }
+            else{
+                j++;
+                numOfMeetings--; 
+            }
+            
+            res=Math.max(numOfMeetings,res); 
 
         }
         
-        return numRooms; 
+        return res; 
         
         
     }
