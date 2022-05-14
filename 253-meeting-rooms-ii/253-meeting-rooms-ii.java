@@ -1,12 +1,6 @@
 class Solution {
     public int minMeetingRooms(int[][] intervals) {
         
-        Arrays.sort(intervals, (a,b) -> Integer.compare(a[0], b[0])); 
-        
-        
-        // 1    2   3   8   10  11
-        // 7    10  12  19  20  30
-        
         int[] start=new int[intervals.length]; 
         int[] end=new int[intervals.length]; 
         
@@ -36,14 +30,12 @@ class Solution {
                                          
             }
             else{
-                
-            j++; 
-                numOfMeetings--; }
+                j++;
+                numOfMeetings--; 
+            }
             
             res=Math.max(numOfMeetings,res); 
-            
-            
-            
+
         }
         
         return res; 
