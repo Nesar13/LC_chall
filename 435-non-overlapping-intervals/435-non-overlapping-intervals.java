@@ -1,4 +1,9 @@
 class Solution {
+    
+    // We can sort the array, and keep like a running previous interval
+    // We have to realize that if there is an overlap, 
+    // we should keep the min end time, so we don't really need to store the previous
+    // interval, just the end time
     public int eraseOverlapIntervals(int[][] intervals) {
         
         
@@ -6,25 +11,23 @@ class Solution {
         
         Arrays.sort(intervals, (a,b) -> Integer.compare(a[0], b[0])); 
         
-        int[] curr=intervals[0]; 
+        int end=intervals[0][1]; 
         int res=0; 
         
         for(int i=1; i < intervals.length; i++){
             
             
-            if (intervals[i][0] < curr[1]){
+            if (intervals[i][0] < end){
                 res++; 
-                curr[1]=Math.min(intervals[i][1], curr[1]);
+                end=Math.min(intervals[i][1], end);
             }
             
-            else curr=intervals[i]; 
+            else end=intervals[i][1]; 
             
             
         }
         
         return res; 
-        
-        
-        
+ 
     }
 }
