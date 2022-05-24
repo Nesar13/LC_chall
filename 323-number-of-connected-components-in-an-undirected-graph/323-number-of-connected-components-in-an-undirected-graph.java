@@ -1,43 +1,43 @@
 class Solution {
     public int countComponents(int n, int[][] edges) {
         
-        boolean[] visited=new boolean[n]; 
-        List<List<Integer>> graph=new ArrayList(); 
+        int[] arr=new int[n]; 
+        boolean[] visited=new boolean[n];
         int res=0; 
-        for (int i=0; i < n; i++){    
-            graph.add(new ArrayList<>()); 
-        }
-        
+        for (int i=0; i < n; i++) arr[i]=i; 
+                
         for (int[] e: edges){
             
-            graph.get(e[0]).add(e[1]); 
-            graph.get(e[1]).add(e[0]); 
-            }
-        
-        for (int i=0; i < n; i++){
+            int x=find(arr, e[0]); 
+            int y=find(arr, e[1]); 
+            if(x != y ) n--; 
             
-            if (visited[i]) continue; 
-            
-            dfs(graph, visited, i);
-            res++; 
-            
+           union(arr,x,y); 
             
         }
         
-        return res; 
+
+        return n; 
+     
         
     }
     
     
     
-    void dfs(List<List<Integer>> graph, boolean[] visited, int curr){
+    int find(int[] arr, int x){
+        while(x != arr[x]) x=arr[x]; 
+        return x; 
+    }
+    
+    void union(int[] arr, int parent, int child){
         
+        int x=find(arr, parent);
+        int y=find(arr, child); 
         
-        visited[curr]=true; 
-        for (int neighbor: graph.get(curr)){
-            if(visited[neighbor]) continue; 
-            dfs(graph, visited, neighbor); 
+        if (x != y){
+            arr[y]=x; 
         }
         
     }
+
 }
