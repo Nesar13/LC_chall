@@ -9,6 +9,7 @@ class Solution {
             int from = edge[0];
             int to = edge[1];
             //return the result
+            // mathematically, the edge that we add that will be created to create a loop will be found first
             if(find(from, parents) == find(to, parents)) return edge;      
             union(from, to, parents);
         }
