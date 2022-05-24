@@ -1,4 +1,6 @@
 class Solution {
+    
+    
    public int[] findRedundantConnection(int[][] edges) {
        //max edges is 1000
         int[] parents = new int[edges.length+1]; 
