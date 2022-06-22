@@ -21,33 +21,34 @@ class Node {
 class Solution {
     public Node cloneGraph(Node node) {
         
-        if (node==null) return node; 
-        HashMap<Node, Node> map=new HashMap<>();
-        // HashSet<Node> visited=new HashSet<>(); 
-   
-        Deque<Node> q=new ArrayDeque<>(); 
-        map.put(node, new Node(node.val)); 
+        if(node == null) return node; 
+        HashMap<Node, Node> map=new HashMap<>(); 
+        ArrayDeque<Node> q=new ArrayDeque<>(); 
+        HashSet<Integer> visited=new HashSet<>(); 
         q.offer(node); 
+        map.put(node, new Node(node.val)); 
+        
         while(!q.isEmpty()){
-            
-            Node curr=q.poll(); 
-            for (Node n: curr.neighbors){
+            Node temp=q.poll(); 
+            for (Node neighbor: temp.neighbors){
                 
-                if (!map.containsKey(n)) {
-                map.putIfAbsent(n, new Node(n.val)); 
-                q.offer(n); 
-                    
+                if(!visited.contains(neighbor.val)){
+                    map.put(neighbor, new Node(neighbor.val)); 
+                    visited.add(neighbor.val); 
+                    q.offer(neighbor);
+                   
                 }
-                map.get(curr).neighbors.add(map.get(n)); 
-                    
+                map.get(temp).neighbors.add(map.get(neighbor));
+            
+                
             }
             
-            
         }
+                
+                
+                
+        return map.get(node); 
         
-      
-        
-        return map.get(node);
         
     }
 }
