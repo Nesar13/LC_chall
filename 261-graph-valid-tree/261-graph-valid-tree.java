@@ -1,43 +1,42 @@
 class Solution {
-    
-    // we have a prev/parent 
     public boolean validTree(int n, int[][] edges) {
         
+        //
+        HashSet<Integer> visited=new HashSet<>(); 
+        
         List<List<Integer>> graph=new ArrayList<>();
-        HashSet<Integer> set=new HashSet<>(); 
         
         for (int i=0; i < n; i++){
-            graph.add(new ArrayList<>()); 
             
+            graph.add(new ArrayList<>()); 
         }
         
         for (int[] e: edges){
-            graph.get(e[0]).add(e[1]); 
-            graph.get(e[1]).add(e[0]);    
+            graph.get(e[0]).add(e[1]);
+            graph.get(e[1]).add(e[0]); 
+            
         }
-        int[] visited=new int[n]; 
-        return dfs(set, graph, -1, 0) && set.size() == n;
+        
+        return dfs(graph, visited,0, -1 ) && visited.size()==n; 
         
     }
     
     
-    boolean dfs(HashSet<Integer> set, List<List<Integer>> graph, int prev, int curr){
-        if(set.contains(curr)) return false; 
-        set.add(curr); 
+    
+    boolean dfs(List<List<Integer>> graph, HashSet<Integer> visited, int curr, int prev) {
+        if(visited.contains(curr)) return false; 
+        
+        visited.add(curr); 
+        
         for (int neighbor: graph.get(curr)){
-            if ( prev != neighbor){
-
-            boolean result=dfs(set, graph, curr, neighbor); 
-            if (!result) return false;    
-            }                
+            
+            if(prev != neighbor){
+                boolean result=dfs(graph, visited, neighbor, curr); 
+                if (!result) return false; // if dfs was false
             }
-             return true; 
-        
         }
-    
-    
-   
         
+        return true; 
         
-    
+    }
 }
