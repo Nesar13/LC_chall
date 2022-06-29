@@ -1,60 +1,50 @@
 class Solution {
-    int res=Integer.MAX_VALUE; 
     public int shortestPathBinaryMatrix(int[][] grid) {
-        // directions (including diagonal)
-        if(grid[0][0]==1 || grid[grid.length - 1][grid[0].length - 1] != 0) return -1;
-        int[][] directions={{1,0}, {1,-1},{1,1}, {0, 1}, {0, -1}, {-1, 0}, {-1, -1}, {-1, 1}}; 
-        
-        int[][] visited=new int[grid.length][grid[0].length]; 
         
         int rows=grid.length; 
         int cols=grid[0].length; 
-        Deque<int[]> q=new ArrayDeque<>(); 
+        if(rows==0) return 0; 
+        if(grid[0][0]==1) return -1; 
+        ArrayDeque<int[]> q=new ArrayDeque<>(); 
+        int res=0; 
+        boolean[][] visited=new boolean[rows][cols];
+        int[][] directions={{0,1}, {0,-1}, {1,0}, {1,1}, {1,-1}, {-1, 0}, {-1, -1}, {-1, 1}}; 
         
-        visited[0][0]=1;
-        
-        q.offer(new int[]{0, 0}); 
+        q.offer(new int[]{0,0}); 
         
         while(!q.isEmpty()){
             
+           
             int n=q.size(); 
+            
             for (int i=0; i < n; i++){
-                
-                int[] curr=q.poll(); 
-                
-                int row=curr[0]; 
-                int col=curr[1]; 
-                if(row == rows-1 && col==cols-1) return visited[row][col]; 
+                int[] curr= q.poll(); 
+                if(curr[0]==rows-1 && curr[1]==cols-1) return res+1; 
                 for (int[] d: directions){
                     
-                    int x=d[0]+ row; 
-                    int y=d[1]+ col; 
+                    int row=curr[0] + d[0]; 
+                    int col=curr[1] + d[1]; 
                     
-                    if(x < 0 || x> rows-1 || y < 0 || y> cols-1 || grid[x][y]==1) continue; 
-                    if(visited[x][y] !=0) continue; 
-                    if(x == rows-1 && y==cols-1) return visited[row][col] +1; 
+                    if( row < 0 || row > rows-1 || col < 0 ||   col > cols-1 || visited[row][col] || grid[row][col]==1){
+                        continue; 
+                    }
                     
-                    visited[x][y]= visited[row][col] +1; 
+                    q.offer(new int[] {row, col});
+                    visited[row][col]=true; 
                     
-                    q.offer(new int[]{x, y}); 
                     
                     
                 }
                 
-                //System.out.println(Arrays.deepToString(visited)); 
+               
                 
             }
+            res++; 
             
             
         }
         
         return -1; 
-       
-        
         
     }
-    
-
-    
-    
 }
