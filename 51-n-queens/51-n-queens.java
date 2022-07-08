@@ -4,10 +4,10 @@ class Solution {
     
     public List<List<String>> solveNQueens(int n) {
         size = n;
-        String emptyBoard[][] = new String[size][size];
+        char emptyBoard[][] = new char[size][size];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                emptyBoard[i][j] = ".";
+                emptyBoard[i][j] = '.';
             }
         }
 
@@ -16,24 +16,18 @@ class Solution {
     }
     
     // Making use of a helper function to get the
-    // solutions in the correct output format List<String>
-    private List<String> createBoard(String[][] state) {
+    // solutions in the correct output format
+    private List<String> createBoard(char[][] state) {
         List<String> board = new ArrayList<String>();
         for (int row = 0; row < size; row++) {
-            StringBuilder sb=new StringBuilder(); 
-            for (int j=0; j < state[row].length; j++){
-                sb.append(state[row][j]);
-              
-            }
-                board.add(sb.toString());
-           
-          
+            String current_row = new String(state[row]);
+            board.add(current_row);
         }
         
         return board;
     }
     
-    private void backtrack(int row, Set<Integer> diagonals, Set<Integer> antiDiagonals, Set<Integer> cols, String[][] state) {
+    private void backtrack(int row, Set<Integer> diagonals, Set<Integer> antiDiagonals, Set<Integer> cols, char[][] state) {
         // Base case - N queens have been placed
         if (row == size) {
             solutions.add(createBoard(state));
@@ -52,7 +46,7 @@ class Solution {
             cols.add(col);
             diagonals.add(currDiagonal);
             antiDiagonals.add(currAntiDiagonal);
-            state[row][col] = "Q";
+            state[row][col] = 'Q';
 
             // Move on to the next row with the updated board state
             backtrack(row + 1, diagonals, antiDiagonals, cols, state);
@@ -62,7 +56,7 @@ class Solution {
             cols.remove(col);
             diagonals.remove(currDiagonal);
             antiDiagonals.remove(currAntiDiagonal);
-            state[row][col] = ".";
+            state[row][col] = '.';
         }
     }
 }
