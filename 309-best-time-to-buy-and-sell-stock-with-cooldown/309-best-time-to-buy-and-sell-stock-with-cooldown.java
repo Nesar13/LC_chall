@@ -11,10 +11,10 @@ class Solution {
     int dfs(int[] prices, HashMap<String, Integer>  memo, int index, boolean buying){
         
         if(index >= prices.length) return 0;
+        StringBuilder key=new StringBuilder(); 
+        key.append(buying).append("=>").append(index); 
         
-        String key=buying + "=>" + index; 
-        
-        if(memo.containsKey(key)) return memo.get(key); 
+        if(memo.containsKey(key.toString())) return memo.get(key.toString()); 
         
         int cooldown=dfs(prices, memo, index+1,buying );
             int buyOrSell=Integer.MIN_VALUE; 
@@ -27,9 +27,9 @@ class Solution {
                 buyOrSell=dfs(prices, memo, index+2, !buying) + prices[index]; 
             }
         
-        memo.put(key, Math.max(buyOrSell, cooldown)); 
+        memo.put(key.toString(), Math.max(buyOrSell, cooldown)); 
         
-        return memo.get(key); 
+        return memo.get(key.toString()); 
         
         
         
