@@ -1,6 +1,13 @@
 class Solution {
     
-    //
+    // 1)We can do this with a window sliding algo
+    // 2)we can have two maps: one to store characters for s and one for t
+    // 3) we can have a variable to keep track of all the relevant characters
+    // we found in s and once this variable has the size of t
+    // we can update our minimun length and our starting index for the substring
+    // 4) We need a while loop since we may encounter letters that occur in s more than
+    // it occurs in t, so we can reduce window size
+    // TC: O(n) | SC: O(n)
     public String minWindow(String s, String t) {
         if (s.length() < t.length() || t=="") return ""; 
         
