@@ -1,15 +1,6 @@
 class Solution {
     public int leastBricks(List<List<Integer>> wall) {
-        //Input: wall = 
-//         [[1,2,2,1],
-//          [3,1,2],
-//          [1,3,2],
-//          [2,4],
-//          [3,1,2],
-//          [1,3,1,1]]
-        
-//         -#--#--#-
-//         ---#-#--
+
         int n=wall.size(); 
         HashMap<Integer,Integer> map=new HashMap<>();
         
