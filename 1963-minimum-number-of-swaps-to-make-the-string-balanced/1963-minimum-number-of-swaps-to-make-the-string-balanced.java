@@ -1,16 +1,6 @@
 class Solution {
     public int minSwaps(String s) {
         
-        // open
-        // s = "][]["
-        // res-1=1
-        
-        
-        //Input: s = "]]][[["
-        
-        // []][
-        //[[][]
-        
         int open=0; 
         int res=0; 
         
@@ -21,13 +11,12 @@ class Solution {
                 open--; 
                 if(open < 0) {
                     res++;
-                    open=1; 
+                    open=1; // "][" it will be -1, so we will need to swap, so instead of subtracting we will need to add 1 to the open variable, so technically it's +2
                 }
             }
         }
         
-        // if(res==1) return 1; 
-        // return res ==0 ? 0 : res-1; 
+      
         return res; 
         
         
